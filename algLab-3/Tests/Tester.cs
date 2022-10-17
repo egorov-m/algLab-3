@@ -18,6 +18,10 @@ namespace algLab_3.Tests
         /// <summary> Имя файла с тестовыми данными </summary>
         public static string FileNameTestData { get; private set; } = "input";
 
+        /// <summary> Получить вектор времени </summary>
+        /// <returns> Словарь, где key - количество операций, value - время в миллисекундах </returns>
+        public Dictionary<int, double> GetTimeVector() => _timeVector;
+
         /// <summary> Инициализация тестера </summary>
         /// <param name="start"> Начальное значение: количество операций </param>
         /// <param name="end"> Конечное значение: количество операций </param>
@@ -56,19 +60,6 @@ namespace algLab_3.Tests
                 _timeVector.Add(index, Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), l));
                 index += _step;
             }
-        }
-
-        /// <summary> Запись в CSV файл </summary>
-        /// <param name="path"> Путь </param>
-        public void WriteCsvFile(string path = "result.csv")
-        {
-            var csv = new StringBuilder();
-            foreach (var item in _timeVector)
-            {
-                csv.Append($"{item.Key};{item.Value}");
-                csv.Append(Environment.NewLine);
-            }
-            File.WriteAllText(path, csv.ToString());
         }
 
         /// <summary> Установить имя файла тестовых данных </summary>
