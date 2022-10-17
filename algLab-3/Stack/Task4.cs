@@ -43,7 +43,7 @@
         /// <summary> Проверить является ли элемент выражения оператором </summary>
         /// <param name="item"> Элемент выражения </param>
         /// <param name="result"> Полученный оператор </param>
-        private static bool CheckIsOperator(string item, out IOperation result)
+        public static bool CheckIsOperator(string item, out IOperation result)
         {
             switch (item.ToLower())
             {
@@ -107,63 +107,63 @@
         }
 
         /// <summary> Класс сложения </summary>
-        private class Addition : IBinaryOperation
+        public class Addition : IBinaryOperation
         {
             string IOperation.OperationName => "+";
             public double Calculate(double x, double y) => x + y;
         }
 
         /// <summary> Класс вычитания </summary>
-        private class Subtraction : IBinaryOperation
+        public class Subtraction : IBinaryOperation
         {
             string IOperation.OperationName => "-";
             public double Calculate(double x, double y) => x - y;
         }
 
         /// <summary> Класс умножения </summary>
-        private class Multiplication : IBinaryOperation
+        public class Multiplication : IBinaryOperation
         {
             string IOperation.OperationName => "*";
             public double Calculate(double x, double y) => x * y;
         }
 
         /// <summary> Класс деления </summary>
-        private class Dividing : IBinaryOperation
+        public class Dividing : IBinaryOperation
         {
             string IOperation.OperationName => "/";
             public double Calculate(double x, double y) => x / y;
         }
 
         /// <summary> Класс возведения в степень </summary>
-        private class ElevationToRank : IBinaryOperation
+        public class ElevationToRank : IBinaryOperation
         {
             string IOperation.OperationName => "^";
             public double Calculate(double x, double y) => Math.Pow(x, y);
         }
 
         /// <summary> Класс натуральный логарифм </summary>
-        private class NaturalLagorithm : IUnaryOperation
+        public class NaturalLagorithm : IUnaryOperation
         {
             string IOperation.OperationName => "ln";
             public double Calculate(double x) => Math.Log(x, Math.E);
         }
 
         /// <summary> Класс косинус </summary>
-        private class Cos : IUnaryOperation
+        public class Cos : IUnaryOperation
         {
             string IOperation.OperationName => "cos";
             public double Calculate(double x) => Math.Cos(x);
         }
 
         /// <summary> Класс синус </summary>
-        private class Sin : IUnaryOperation
+        public class Sin : IUnaryOperation
         {
             string IOperation.OperationName => "sin";
             public double Calculate(double x) => Math.Sin(x);
         }
 
         /// <summary> Класс квадратный корень </summary>
-        private class Sqrt : IUnaryOperation
+        public class Sqrt : IUnaryOperation
         {
             string IOperation.OperationName => "sqrt";
             public double Calculate(double x) => Math.Sqrt(x);

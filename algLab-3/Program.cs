@@ -10,8 +10,10 @@ namespace algLab_3
             //var tester = new Tester(1, 5000, 10);
             //tester.Testing();
             //tester.WriteCsvFile();
-            var testStr = "10 2 ^ 95 - 4 8 * +"; // 37
-            Console.WriteLine($"{testStr}: {Task4.Calculate(testStr)}");
+            // var testStr = "10 2 ^ 95 - 4 8 * +"; // 37
+            //Console.WriteLine($"{testStr}: {Task4.Calculate(testStr)}");
+            var testStr = "( 7 - 10 / 2 ) * ( 8 / 4 + 4 )";
+            Console.WriteLine($"{testStr}   |   {Task5.InfixToPrefix(testStr)}");
         }
     }
 }
