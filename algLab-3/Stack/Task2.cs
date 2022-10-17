@@ -2,8 +2,13 @@
 
 namespace algLab_3.Stack
 {
+    /// <summary> Часть 1. Задание 2. </summary>
     public class Task2
     {
+        /// <summary> Парсить выражение и выполнять операции </summary>
+        /// <param name="iStack"> Стек для выполнения операций </param>
+        /// <param name="str"> Выражение для парсинга </param>
+        /// <returns> Время требуемое на выполнение операций из выражения в миллисекундах </returns>
         public static double ParsingAndExecutingOperations(IStack<object> iStack, string str)
         {
             var stack = (Stack.Stack<object>) iStack;

@@ -1,26 +1,36 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using algLab_3.Stack;
 
 namespace algLab_3.Tests
 {
+    /// <summary> Класс тестирования </summary>
     public class Tester
     {
+        /// <summary> Вектор времени </summary>
         private readonly Dictionary<int, double> _timeVector;
+        /// <summary> Начальное значение: количество операций </summary>
         private int _start;
+        /// <summary> Конечное значение: количество операций </summary>
         private int _end;
+        /// <summary> Шаг: количество операций </summary>
         private int _step;
 
+        /// <summary> Имя файла с тестовыми данными </summary>
         public static string FileNameTestData { get; private set; } = "input";
 
+        /// <summary> Инициализация тестера </summary>
+        /// <param name="start"> Начальное значение: количество операций </param>
+        /// <param name="end"> Конечное значение: количество операций </param>
+        /// <param name="step"> Шаг: количество операций </param>
         public Tester(int start, int end, int step)
         {
             _timeVector = new Dictionary<int, double>();
             Init(start, end, step);
         }
 
+        /// <summary> Инициализация тестера </summary>
+        /// <param name="end"> Конечное значение: количество операций </param>
+        /// <param name="step"> Шаг: количество операций </param>
         public Tester(int end = 25, int step = 1)
         {
             _timeVector = new Dictionary<int, double>();
@@ -34,6 +44,8 @@ namespace algLab_3.Tests
             _step = step;
         }
 
+        /// <summary> Тестировать </summary>
+        /// <param name="newData"> Генерировать ли новые тестовые данные</param>
         public void Testing(bool newData = true)
         {
             if (newData || !File.Exists($"{FileNameTestData}.txt")) GenerateTestFile();
@@ -46,6 +58,8 @@ namespace algLab_3.Tests
             }
         }
 
+        /// <summary> Запись в CSV файл </summary>
+        /// <param name="path"> Путь </param>
         public void WriteCsvFile(string path = "result.csv")
         {
             var csv = new StringBuilder();
@@ -57,11 +71,15 @@ namespace algLab_3.Tests
             File.WriteAllText(path, csv.ToString());
         }
 
+        /// <summary> Установить имя файла тестовых данных </summary>
+        /// <param name="fileName"> Новое имя файла </param>
         public static void SetFileNameTestData(string fileName)
         {
             FileNameTestData = fileName;
         }
 
+        /// <summary> Генерировать входную строку </summary>
+        /// <param name="size"> Количество операций </param>
         private static StringBuilder GenerateInputString(int size = 5)
         {
             var sb = new StringBuilder();
@@ -70,7 +88,6 @@ namespace algLab_3.Tests
                 var item = new Random().Next(1, 6);
                 if (item == 1)
                 {
-
                     sb.Append(item);
                     sb.Append(",12345");
                     sb.Append(' ');
@@ -83,18 +100,26 @@ namespace algLab_3.Tests
             return sb;
         }
 
+        /// <summary> Генерировать тестовый файл </summary>
+        /// <param name="end"> Конечное значение: количество операций </param>
+        /// <param name="step"> Шаг: количество операций </param>
         public void GenerateTestFile(int end, int step = 1)
         {
             Init(1, end, step);
             GenerateTestFile();
         }
 
+        /// <summary> Генерировать тестовый файл </summary>
+        /// <param name="start"> Начальное значение: количество операций </param>
+        /// <param name="end"> Конечное значение: количество операций </param>
+        /// <param name="step"> Шаг: количество операций </param>
         public void GenerateTestFile(int start, int end, int step = 1)
         {
             Init(start, end, step);
             GenerateTestFile();
         }
 
+        /// <summary> Генерировать тестовый файл </summary>
         public void GenerateTestFile()
         {
             var fs = new FileStream($"{FileNameTestData}.txt", FileMode.Create);

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace algLab_3.Stack
+﻿namespace algLab_3.Stack
 {
+    /// <summary> Часть 1. Задание 4. </summary>
     public class Task4
     {
+        /// <summary> Вычислить значение выражения </summary>
+        /// <param name="str"> Выражение в постфиксной форме </param>
+        /// <returns> Значение выражения </returns>
         public static double Calculate(string str)
         {
             var commands = str.Split(' ');
@@ -42,6 +40,9 @@ namespace algLab_3.Stack
             return Math.Round(stack.Pop(), 3);
         }
 
+        /// <summary> Проверить является ли элемент выражения оператором </summary>
+        /// <param name="item"> Элемент выражения </param>
+        /// <param name="result"> Полученный оператор </param>
         private static bool CheckIsOperator(string item, out IOperation result)
         {
             switch (item.ToLower())
@@ -81,69 +82,87 @@ namespace algLab_3.Stack
             return true;
         }
 
+        /// <summary> Интерфейс операции </summary>
         public interface IOperation
         {
+            /// <summary> Имя операции </summary>
             string OperationName { get; }
         }
 
+        /// <summary> Интерфейс бинарной операции </summary>
         public interface IBinaryOperation : IOperation
         {
+            /// <summary> Вычислить </summary>
+            /// <param name="x"> Первый операнд </param>
+            /// <param name="y"> Второй операнд </param>
             double Calculate(double x, double y);
         }
 
+        /// <summary> Интерфейс унарной операции </summary>
         public interface IUnaryOperation : IOperation
         {
+            /// <summary> Вычислить </summary>
+            /// <param name="x"> Первый операнд </param>
             double Calculate(double x);
         }
 
+        /// <summary> Класс сложения </summary>
         private class Addition : IBinaryOperation
         {
             string IOperation.OperationName => "+";
             public double Calculate(double x, double y) => x + y;
         }
 
+        /// <summary> Класс вычитания </summary>
         private class Subtraction : IBinaryOperation
         {
             string IOperation.OperationName => "-";
             public double Calculate(double x, double y) => x - y;
         }
 
+        /// <summary> Класс умножения </summary>
         private class Multiplication : IBinaryOperation
         {
             string IOperation.OperationName => "*";
             public double Calculate(double x, double y) => x * y;
         }
 
+        /// <summary> Класс деления </summary>
         private class Dividing : IBinaryOperation
         {
             string IOperation.OperationName => "/";
             public double Calculate(double x, double y) => x / y;
         }
 
+        /// <summary> Класс возведения в степень </summary>
         private class ElevationToRank : IBinaryOperation
         {
             string IOperation.OperationName => "^";
             public double Calculate(double x, double y) => Math.Pow(x, y);
         }
 
+        /// <summary> Класс натуральный логарифм </summary>
         private class NaturalLagorithm : IUnaryOperation
         {
             string IOperation.OperationName => "ln";
             public double Calculate(double x) => Math.Log(x, Math.E);
         }
 
+        /// <summary> Класс косинус </summary>
         private class Cos : IUnaryOperation
         {
             string IOperation.OperationName => "cos";
             public double Calculate(double x) => Math.Cos(x);
         }
 
+        /// <summary> Класс синус </summary>
         private class Sin : IUnaryOperation
         {
             string IOperation.OperationName => "sin";
             public double Calculate(double x) => Math.Sin(x);
         }
 
+        /// <summary> Класс квадратный корень </summary>
         private class Sqrt : IUnaryOperation
         {
             string IOperation.OperationName => "sqrt";
