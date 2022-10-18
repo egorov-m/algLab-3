@@ -13,7 +13,10 @@ namespace algLab_3
             //tester.WriteCsvFile();
             // var testStr = "10 2 ^ 95 - 4 8 * +"; // 37
             //Console.WriteLine($"{testStr}: {Task4.Calculate(testStr)}");
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
             //var memoryTester = new OutOfMemoryTester();
             //var stack = new Stack.Stack<string>();
             //var result = memoryTester.Testing(stack.Push);
@@ -21,13 +24,17 @@ namespace algLab_3
             //Console.WriteLine(result.Item2);
             //memoryTester.GetMemoryVector().WriteCsvFile("memoryResult.csv");
             //Console.WriteLine("Запись в CSV завершена.");
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
             //var task = new Examples.DeleteDuplicateFromLinkedList();
             //Examples.List.ShowResult();
             //Examples.ReverseWords.ShowResult();
             //Examples.MaxLevelInBinaryTree.Node.ShowMaxLevel();
             //Examples.ExpressionTree.ShowExpression();
 
+<<<<<<< HEAD
             var cyclicDuplexLinkedList = new Lists.CyclicDuplexLinkedList<int>();
             cyclicDuplexLinkedList.Add(1);
             cyclicDuplexLinkedList.Add(2);
@@ -44,6 +51,9 @@ namespace algLab_3
             {
                 Console.WriteLine(item);
             }
+=======
+
+>>>>>>> main
         }
     }
 }
