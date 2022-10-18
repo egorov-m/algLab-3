@@ -1,82 +1,27 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace algLab_3.Examples
+﻿namespace algLab_3.Examples
 {
-
-    class List
+    public static class DeleteDuplicateFromLinkedList
     {
-        Node head;
-        class Node
-        {
-            public int data;
-            public Node next;
-
-            public Node(int d)
-            {
-                data = d;
-                next = null;
-            }
-        }
-
-        void removeDuplicates()
-        {
-            Node ptr1 = null, ptr2 = null;
-            ptr1 = head;
-
-
-            while (ptr1 != null && ptr1.next != null)
-            {
-                ptr2 = ptr1;
-
-                while (ptr2.next != null)
-                {
-
-                    if (ptr1.data == ptr2.next.data)
-                        ptr2.next = ptr2.next.next;
-                    
-                    else 
-                        ptr2 = ptr2.next;
-                }
-                ptr1 = ptr1.next;
-            }
-        }
-
-
-
-
-        void printList(Node node)
+        public static void PrintList<T>(this Lists.LinkedList<T>.Node<T> node)
         {
             while (node != null)
             {
-                Console.Write(node.data + " ");
-                node = node.next;
+                Console.Write(node.Data + " ");
+                node = node.Next;
             }
         }
-
         public static void ShowResult()
         {
-            List list = new List();
-            list.head = new Node(10);
-            list.head.next = new Node(12);
-            list.head.next.next = new Node(11);
-            list.head.next.next.next = new Node(11);
-            list.head.next.next.next.next = new Node(12);
-            list.head.next.next.next.next.next = new Node(11);
-            list.head.next.next.next.next.next.next = new Node(10);
+            var list = new Lists.LinkedList<int>() { 10, 12, 11, 11, 12, 11, 10 };
 
-            Console.WriteLine("Связный лист до удаления одинаковых элементов: ");
-            list.printList(list.head);
+            Console.WriteLine("Связный лист до удаления дубликатов: ");
+            list.Head.PrintList();
 
-            list.removeDuplicates();
+            // Часть 3.
+            list.removeDuplicates<int>();
             Console.WriteLine("");
-            Console.WriteLine("Связный лист после удаления одинаковых элементов: ");
-            list.printList(list.head);
+            Console.WriteLine("Связный лист после удаления дубликатов: ");
+            list.Head.PrintList();
         }
     }
 }

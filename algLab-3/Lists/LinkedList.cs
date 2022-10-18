@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace algLab_3.Lists
 {
@@ -35,6 +36,37 @@ namespace algLab_3.Lists
         {
             Clear();
         }
+
+
+        /// <summary>
+        /// Удаление дубликатов с помощью односвязного списка;
+        /// Часть 3.
+        /// </summary>
+        /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
+        public void removeDuplicates<T>()
+        {
+            var ptr1 = Head;
+            var ptr2 = ptr1;
+
+
+            while (ptr1 != null && ptr1.Next != null)
+            {
+                ptr2 = ptr1;
+
+                while (ptr2 != null && ptr2.Next != null)
+                {
+
+                    if (ptr1.Data.Equals(ptr2.Next.Data))
+                        ptr2.Next = ptr2.Next.Next;
+                    
+                    else 
+                        ptr2 = ptr2.Next.Next;
+                }
+                ptr1 = ptr1.Next;
+            }
+        }
+
+
 
         /// <summary> Инициализация списка с начальным элементом </summary>
         /// <param name="item"> Элемент данных списка </param>

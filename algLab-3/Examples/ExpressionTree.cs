@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace algLab_3.Examples
+﻿namespace algLab_3.Examples
 {
-    class Node
+    public class Node
     {
         public char data;
         public Node left, right;
@@ -17,22 +11,19 @@ namespace algLab_3.Examples
             right = null;
         }
     }
-    class ExpressionTree
+    public class ExpressionTree
     {
         public static bool isOperator(char ch)
         {
-            if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^')
-                return true;
-
-            return false;
+            return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
         }
 
-        static Node expressionTree(String postfix)
+        public static Node expressionTree(String postfix)
         {
-            algLab_3.Stack.Stack<Node> stack = new algLab_3.Stack.Stack<Node>();
+            var stack = new Stack.Stack<Node>();
             Node t1, t2, temp;
 
-            for (int i = 0; i < postfix.Length; i++)
+            for (var i = 0; i < postfix.Length; i++)
             {
                 if (!isOperator(postfix[i]))
                 {
@@ -51,12 +42,11 @@ namespace algLab_3.Examples
 
                     stack.Push(temp);
                 }
-
             }
             temp = stack.Pop();
             return temp;
         }
-        static void inorder(Node root)
+        public static void inorder(Node root)
         {
             if (root == null) return;
 
@@ -67,9 +57,9 @@ namespace algLab_3.Examples
 
         public static void ShowExpression()
         {
-            String postfix = "ABC*+D/";
+            var postfix = "ABC*+D/";
 
-            Node r = expressionTree(postfix);
+            var r = expressionTree(postfix);
             inorder(r);
         }
     }
