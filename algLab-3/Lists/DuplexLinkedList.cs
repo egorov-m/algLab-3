@@ -1,10 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace algLab_3.Lists
 {
     /// <summary> Двусвязный список </summary>
     /// <typeparam name="T"> Тип элементов списка </typeparam>
-    public class DuplexLinkedList<T> : IEnumerable<T>
+    public class DuplexLinkedList<T> : IEnumerable
     {
         /// <summary> Узел — элемент списка </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
@@ -127,60 +128,87 @@ namespace algLab_3.Lists
                 result.Add(current.Data);
                 current = current.Prev;
             }
-
             return result;
         }
 
         /// <summary>
-        /// Написать функцию, которая переносит в начало (в конец) непустого списка L его последний (первый) элемент;
+        /// 2.	Написать функцию, которая переносит в начало (в конец) непустого списка L его последний (первый) элемент;
         /// Часть 4. Задание 2.
         /// </summary>
-        /// <returns> Новый список </returns>
-        
-        public void AddFirst(Node<T> node)
+        public void SwapFirstAndLast()
         {
-            var temp = Head;
+            if (Count < 2) return;
+            var currentHead = Head;
+            var currentTail = Tail;
+            Head.Prev = currentTail.Prev;
+            Tail.Next = currentHead.Next;
+            currentTail.Prev.Next = Head;
+            currentHead.Next.Prev = Tail;
+            Head = currentTail;
+            Tail = currentHead;
+            Head.Prev = null;
+            Tail.Next = null;
+        }
 
+        
+         
+        /// <summary> Добавить элемент в начало списка </summary>
+        /// <param name="data"> Новые данные </param>
+        public void AddFirst(T data)
+        {
+            var node = new Node<T>(data);
+            if (IsEmpty)
+            {
+                SetHeadAndTail(node);
+                return;
+            }
+
+            var temp = Head;
             node.Next = temp;
             Head = node;
-            if (Count == 0)
+            temp.Prev = node;
+            Count++;
+        }
+
+        /// <summary> Добавить элемент в конец списка </summary>
+        /// <param name="data"> Новые данные </param>
+        public void AddLast(T data)
+        {
+            var node = new Node<T>(data);
+            if (IsEmpty)
             {
                 SetHeadAndTail(node);
                 return;
             }
-                
-            else
-                temp.Prev = node;
-            Count++;
-        }
-
-        public void AddLast(Node<T> node)
-        {
             var temp = Tail;
-
             node.Next = Tail;
             Tail = node;
-            if (Count == 0)
-            {
-                SetHeadAndTail(node);
-                return;
-            }
-
-            else
-                temp.Prev = node;
+            temp.Prev = node;
             Count++;
         }
 
+        /// <summary> Проверить что указанные данные содержатся </summary>
+        /// <param name="data"> Данные </param>
+        public bool Contains(int data)
+        {
+            var current = Head;
+            while (current != null)
+            {
+                if (current.Data.Equals(data))
+                    return true;
+                current = current.Next;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Написать функцию, которая определяет количество различных элементов списка, содержащего целые числа
         /// Часть 4. Задание 3.
         /// </summary>
         /// <returns> Новый список </returns>
-        
         public bool ContainsSecond(T item)
         {
-            int count = 0;
+            var count = 0;
             var current = Head;
             while(current != null)
             {
@@ -203,7 +231,6 @@ namespace algLab_3.Lists
         /// Часть 4. Задание 4.
         /// </summary>
         /// <returns> Новый список </returns>
-        
         public bool RemoveLast(T data)
         {
             var current = Tail;
@@ -234,35 +261,10 @@ namespace algLab_3.Lists
         }
 
         /// <summary>
-        /// Написать функцию вставки списка самого в себя вслед за первым вхождением числа х.
-        /// Часть 4. Задание 5.
-        /// </summary>
-        /// <returns> Новый список </returns>
-
-
-        public void IntoMyself(Node<T> data)
-        {
-            if (Head == null)
-                Head = data;
-
-            else
-            {
-                Tail.Next = data;
-                data.Prev = Tail;
-                Add(data);
-            }
-
-            Tail = data;
-            Count++;
-        }
-
-
-        /// <summary>
         /// Написать функцию, которая удаляет из списка L все элементы Е, если таковые имеются. 
         /// Часть 4. Задание 7.
         /// </summary>
         /// <returns> Новый список </returns>
-        
         public bool ContainsAllNumbers(T data)
         {
             var current = Head;
@@ -287,8 +289,51 @@ namespace algLab_3.Lists
                 Console.WriteLine(i);
         }
 
+        /// <summary>
+        /// 8.	Написать функцию, которая вставляет в список L новый элемент F перед первым вхождением элемента Е, если Е входит в L;
+        /// Часть 4. Задание 8.
+        /// </summary>
+        /// <param name="target"> Опорный элемент </param>
+        /// <param name="data"> Данные </param>
+        public void InsertBefore(T target, T data)
+        {
+            if (Head != null)
+            {
+                var current = Head;
+                while (current != null)
+                {
+                    if (current.Data.Equals(target))
+                    {
+                        var node = new Node<T>(data);
 
+                        
+                        node.Prev = current.Prev;
+                        node.Next = current;
+                        if (current.Prev != null)
+                        {
+                            current.Prev.Next = node;
+                            current.Prev = node;
+                        }
+                        else
+                        {
+                            current.Prev = node;
+                            Head = node;
+                        }
 
+                        Count++;
+                        return;
+                    }
+                    else
+                    {
+                        current = current.Next;
+                    }
+                }
+            }
+            else
+            {
+                SetHeadAndTail(new Node<T>(data));
+            }
+        }
 
 
         /// <summary> Установить головной и последний элемент списка </summary>
@@ -311,19 +356,30 @@ namespace algLab_3.Lists
             Count = 0;
         }
 
+        //public IEnumerator<T> GetEnumerator<T>()
+        //{
+        //    var current = Head;
+        //    while (current != null)
+        //    {
+        //        yield return current;
+        //        current = current.Next;
+        //    }
+        //}
+
+        //IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        //{
+        //    return GetEnumerator<T>();
+        //}
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
         public IEnumerator GetEnumerator()
         {
             var current = Head;
             while (current != null)
             {
-                yield return current;
+                yield return current.Data;
                 current = current.Next;
             }
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return (IEnumerator<T>) GetEnumerator();
         }
     }
 }

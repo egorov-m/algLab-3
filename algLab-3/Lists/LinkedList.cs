@@ -43,7 +43,7 @@ namespace algLab_3.Lists
         /// Часть 3.
         /// </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
-        public void removeDuplicates<T>()
+        public void RemoveDuplicates<T>()
         {
             var ptr1 = Head;
             var ptr2 = ptr1;
@@ -121,7 +121,10 @@ namespace algLab_3.Lists
             Count++;
         }
 
-        /// <summary> Вставка после элемента </summary>
+        /// <summary>
+        /// 5. Написать функцию вставки списка самого в себя вслед за первым вхождением числа х;
+        /// Часть 4. Задание 5.
+        /// </summary>
         /// <param name="target"> Опорный элемент </param>
         /// <param name="data"> Данные для вставки </param>
         public void InsertAfter(T target, T data)
