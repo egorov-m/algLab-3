@@ -131,6 +131,166 @@ namespace algLab_3.Lists
             return result;
         }
 
+        /// <summary>
+        /// Написать функцию, которая переносит в начало (в конец) непустого списка L его последний (первый) элемент;
+        /// Часть 4. Задание 2.
+        /// </summary>
+        /// <returns> Новый список </returns>
+        
+        public void AddFirst(Node<T> node)
+        {
+            var temp = Head;
+
+            node.Next = temp;
+            Head = node;
+            if (Count == 0)
+            {
+                SetHeadAndTail(node);
+                return;
+            }
+                
+            else
+                temp.Prev = node;
+            Count++;
+        }
+
+        public void AddLast(Node<T> node)
+        {
+            var temp = Tail;
+
+            node.Next = Tail;
+            Tail = node;
+            if (Count == 0)
+            {
+                SetHeadAndTail(node);
+                return;
+            }
+
+            else
+                temp.Prev = node;
+            Count++;
+        }
+
+
+        /// <summary>
+        /// Написать функцию, которая определяет количество различных элементов списка, содержащего целые числа
+        /// Часть 4. Задание 3.
+        /// </summary>
+        /// <returns> Новый список </returns>
+        
+        public bool ContainsSecond(T item)
+        {
+            int count = 0;
+            var current = Head;
+            while(current != null)
+            {
+                if (current.Data.Equals(item))
+                {
+                    count++;
+                    if(count == 2)
+                    {
+                        Delete(item);
+                        break;
+                    }
+                }
+                current = current.Next;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Написать функцию, которая удаляет из списка L второй из двух одинаковых элементов.
+        /// Часть 4. Задание 4.
+        /// </summary>
+        /// <returns> Новый список </returns>
+        
+        public bool RemoveLast(T data)
+        {
+            var current = Tail;
+            while(current != null)
+            {
+                if (current.Data.Equals(data))
+                    break;
+                current = current.Next;
+            }
+            if(current != null)
+            {
+                if (current.Next != null)
+                    current.Next.Prev = current.Prev;
+
+                else
+                    Tail = current.Prev;
+
+                if (current.Prev != null)
+                    current.Prev.Next = current.Next;
+
+                else
+                    Head = current.Next;
+
+                Count--;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Написать функцию вставки списка самого в себя вслед за первым вхождением числа х.
+        /// Часть 4. Задание 5.
+        /// </summary>
+        /// <returns> Новый список </returns>
+
+
+        public void IntoMyself(Node<T> data)
+        {
+            if (Head == null)
+                Head = data;
+
+            else
+            {
+                Tail.Next = data;
+                data.Prev = Tail;
+                Add(data);
+            }
+
+            Tail = data;
+            Count++;
+        }
+
+
+        /// <summary>
+        /// Написать функцию, которая удаляет из списка L все элементы Е, если таковые имеются. 
+        /// Часть 4. Задание 7.
+        /// </summary>
+        /// <returns> Новый список </returns>
+        
+        public bool ContainsAllNumbers(T data)
+        {
+            var current = Head;
+            while(current != null)
+            {
+                if (current.Data.Equals(data))
+                    Delete(data);
+                current = current.Next;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Функция удваивает список, т.е. приписывает в конец списка себя самого. 
+        /// Часть 4. Задание 11.
+        /// </summary>
+        /// <returns> Новый список </returns>
+
+        public void DoublingList(DuplexLinkedList<int> linkedList)
+        {
+            foreach(var i in linkedList)
+                Console.WriteLine(i);
+        }
+
+
+
+
+
         /// <summary> Установить головной и последний элемент списка </summary>
         /// <param name="node"> Элемент списка </param>
         private void SetHeadAndTail(Node<T> node)
