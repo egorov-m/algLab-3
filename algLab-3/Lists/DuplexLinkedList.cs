@@ -92,7 +92,6 @@ namespace algLab_3.Lists
                     return;
                 }
 
-
                 var current = Head;
 
                 while (current != null)
@@ -111,6 +110,74 @@ namespace algLab_3.Lists
                     current = current.Next;
                 }
             }
+        }
+
+        /// <summary> Удалить элемент список </summary>
+        /// <param name="item"> Удаляемый элемент </param>
+        public void Delete(Node<T> item)
+        {
+            if (Head != null)
+            {
+                if (Head.Equals(item)) // Если этот был первый элемент
+                {
+                    Head = Head.Next;
+                    Count--;
+                    return;
+                }
+
+                var current = Head;
+
+                while (current != null)
+                {
+                    if (current.Equals(item))
+                    {
+                        current.Prev.Next = current.Next;
+                        if (current.Next != null)
+                        {
+                            current.Next.Prev = current.Prev;
+                        }
+                        Count--;
+                        return;
+                    }
+
+                    current = current.Next;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 10.	Функция разбивает список целых чисел на два списка по первому вхождению заданного числа. Если этого числа в списке нет, второй список будет пустым, а первый не изменится;
+        /// Часть 4. Задание 10.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public DuplexLinkedList<T> SplitIntoTwo(T target)
+        {
+            var list2 = new DuplexLinkedList<T>();
+            var current = Head;
+            var flag = false;
+
+            while (current != null)
+            {
+                if (!flag)
+                {
+                    if (current.Data.Equals(target))
+                    {
+                        flag = true;
+                        list2.Add(current);
+                        Delete(current);
+                    }
+                }
+                else
+                {
+                    list2.Add(current);
+                    Delete(current);
+                }
+
+                current = current.Next;
+            }
+
+            return list2;
         }
 
         /// <summary>
@@ -150,7 +217,30 @@ namespace algLab_3.Lists
             Tail.Next = null;
         }
 
-        
+        /// <summary>
+        /// 12.	Функция меняет местами два элемента списка, заданные пользователем;
+        /// Часть 4. Задание 12.
+        /// </summary>
+        /// <param name="item1"></param>
+        /// <param name="item2"></param>
+        public void SwapElement(Node<T> item1, Node<T> item2)
+        {
+            if (Count < 2) return;
+            Node<T> tmp;
+            tmp = item1.Prev;
+            item1.Prev = item2.Prev;
+            item2.Prev = tmp;
+
+            tmp = item1.Next;
+            item1.Next = item2.Next;
+            item2.Next = tmp;
+
+            item1.Prev.Next = item2;
+            item2.Prev.Next = item1;
+
+            item2.Next.Prev = item1;
+            item1.Next.Prev = item2;
+        }
          
         /// <summary> Добавить элемент в начало списка </summary>
         /// <param name="data"> Новые данные </param>
@@ -282,11 +372,17 @@ namespace algLab_3.Lists
         /// Часть 4. Задание 11.
         /// </summary>
         /// <returns> Новый список </returns>
-
-        public void DoublingList(DuplexLinkedList<int> linkedList)
+        public DuplexLinkedList<T> DoublingList(DuplexLinkedList<T> list)
         {
-            foreach(var i in linkedList)
-                Console.WriteLine(i);
+            var list2 = new DuplexLinkedList<T>();
+            foreach(var i in list)
+                list2.Add((T)i);
+            foreach (var item in list2)
+            {
+                list.Add((T)item);
+            }
+            
+            return list;
         }
 
         /// <summary>

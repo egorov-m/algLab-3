@@ -154,6 +154,19 @@ namespace algLab_3.Lists
             }
         }
 
+        /// <summary>
+        /// 9.	Функция дописывает к списку L список E. Оба списка содержат целые числа. В основной программе считать их из файла;
+        /// Часть 4. Задание 9.
+        /// </summary>
+        /// <param name="list"></param>
+        public void AddLinkedList(LinkedList<T> list)
+        {
+            foreach (var item in list)
+            {
+                Add((T)item);
+            }
+        }
+
         /// <summary> Удалить первое вхождение данных в список </summary>
         /// <param name="data"> Удаляемые данные </param>
         public void Delete(T data)
