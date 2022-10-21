@@ -22,6 +22,7 @@ namespace algLab_3.Stack
                 {
                     var element = command.Split(',')[1];
                     stack.Push(element);
+                    Console.WriteLine($"Добавлен элемент: {element}");
                 }
 
                 switch (command)
@@ -29,7 +30,7 @@ namespace algLab_3.Stack
                     case "2":
                         try
                         {
-                            stack.Pop();
+                            Console.WriteLine($"Извлечён элемент: {stack.Pop()}");
                         }
                         catch
                         {
