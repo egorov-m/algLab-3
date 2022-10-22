@@ -53,8 +53,10 @@ namespace algLab_3.Stack
             {
                 numberQueue.Enqueue(operatorsStack.Pop());
             }
-
-            return string.Join(' ', numberQueue);
+            
+            string result = string.Join(' ', numberQueue);
+            Console.WriteLine(result);
+            return result;
         }
 
         public static int GetPriority(string item)

@@ -37,7 +37,9 @@
                 }
             }
 
-            return Math.Round(stack.Pop(), 3);
+            var resultInput = Math.Round(stack.Pop(), 3);
+            Console.WriteLine(resultInput);
+            return resultInput;
         }
 
         /// <summary> Проверить является ли элемент выражения оператором </summary>

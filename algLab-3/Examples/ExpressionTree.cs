@@ -55,10 +55,8 @@
             inorder(root.right);
         }
 
-        public static void ShowExpression()
+        public static void ShowExpression(string postfix)
         {
-            var postfix = "ABC*+D/";
-
             var r = expressionTree(postfix);
             inorder(r);
         }

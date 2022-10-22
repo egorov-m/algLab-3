@@ -1,4 +1,6 @@
-﻿namespace algLab_3.Examples
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace algLab_3.Examples
 {
     public static class DeleteDuplicateFromLinkedList
     {
@@ -10,9 +12,13 @@
                 node = node.Next;
             }
         }
-        public static void ShowResult()
+        public static void ShowResult(string[] elementsArray)
         {
-            var list = new Lists.LinkedList<int>() { 10, 12, 11, 11, 12, 11, 10 };
+
+            int[] myInts = Array.ConvertAll(elementsArray, s => Convert.ToInt32(s));
+
+
+            var list = new Lists.LinkedList<int>(myInts) { };
 
             Console.WriteLine("Связный лист до удаления дубликатов: ");
             list.Head.PrintList();
