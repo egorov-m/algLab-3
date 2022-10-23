@@ -1,6 +1,7 @@
 ﻿using algLab_3.Examples;
 using algLab_3.Stack;
 using algLab_3.Tests;
+using System.Transactions;
 
 namespace algLab_3
 {
@@ -22,12 +23,6 @@ namespace algLab_3
             //memoryTester.GetMemoryVector().WriteCsvFile("memoryResult.csv");
             //Console.WriteLine("Запись в CSV завершена.");
 
-            //var task = new Examples.DeleteDuplicateFromLinkedList();
-            //Examples.List.ShowResult();
-            //Examples.ReverseWords.ShowResult();
-            //Examples.MaxLevelInBinaryTree.Node.ShowMaxLevel();
-            //Examples.ExpressionTree.ShowExpression();
-
             //var cyclicDuplexLinkedList = new Lists.CyclicDuplexLinkedList<int>();
             //cyclicDuplexLinkedList.Add(1);
             //cyclicDuplexLinkedList.Add(2);
@@ -44,7 +39,10 @@ namespace algLab_3
             //{
             //    Console.WriteLine(item);
             //}
-            DeleteDuplicateFromLinkedList.ShowResult();
+            //DeleteDuplicateFromLinkedList.ShowResult();
+
+            ConsoleInput.Console.MainPage();
+
         }
     }
 }

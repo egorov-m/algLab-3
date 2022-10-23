@@ -27,10 +27,9 @@ namespace algLab_3.Examples
             
         }
 
-        public static void ShowResult()
+        public static void ShowResult(string word)
         {
-            var str = "ЕГОР";
-            reverseWords(str);
+            reverseWords(word);
         }
     }
 }
