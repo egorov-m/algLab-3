@@ -1,14 +1,9 @@
-﻿using algLab_3.Stack;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace algLab_3.Queue
 {
-    public class Task2Queue
+    /// <summary> Часть 2. Задание 2. </summary>
+    public class Task2
     {
         public static double ParsingAndExecutingOperations(IQueue<object> iQueue, string str)
         {
@@ -23,6 +18,7 @@ namespace algLab_3.Queue
                 {
                     var element = command.Split(',')[1];
                     queue.Enqueue(element);
+                    Console.WriteLine($"Добавлен элемент: {element}");
                 }
 
                 switch (command)
@@ -30,7 +26,7 @@ namespace algLab_3.Queue
                     case "2":
                         try
                         {
-                            queue.Enqueue(10);
+                            Console.WriteLine($"Извлечён элемент: {queue.Dequeue()}");
                         }
                         catch
                         {

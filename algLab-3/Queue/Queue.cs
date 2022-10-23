@@ -1,86 +1,87 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace algLab_3.Queue
 {
-    public class Node<T>
-    {
-        public Node(T data)
-        {
-            Data = data;
-        }
-        public T Data { get; set; }
-        public Node<T> Next { get; set; }
-    }
-
     public class Queue<T> : IEnumerable<T>, IQueue<T>, IEnumerable, IReadOnlyCollection<T>
     {
-        Node<T> head; // головной/первый элемент
-        Node<T> tail; // последний/хвостовой элемент
-        int count;
-
-        public bool IsEmpty()
+        /// <summary> Класс элемент очереди </summary>
+        /// <typeparam name="T"> Тип данных очереди </typeparam>
+        public class Node<T>
         {
-            return count == 0;
+            public Node(T data)
+            {
+                Data = data;
+            }
+            public T Data { get; set; }
+            public Node<T> Next { get; set; }
         }
 
-        // добавление в очередь
+
+        private int _size = 0;
+        /// <summary> Головной/первый элемент </summary>
+        private Node<T> _head;
+        /// <summary> Последний/хвостовой элемент </summary>
+        private Node<T> _tail;
+        /// <summary> Количество элементов очереди </summary>
+        public int Count => _size;
+
+        /// <summary> Проверить очередь на пустоту </summary>
+        public bool IsEmpty() => _size == 0;
+
+        /// <summary> Добавление данных в очередь </summary>
+        /// <param name="data"> Добавляемые данные </param>
         public void Enqueue(T data)
         {
-            Node<T> node = new Node<T>(data);
-            Node<T> tempNode = tail;
-            tail = node;
-            if (count == 0)
-                head = tail;
+            var node = new Node<T>(data);
+            var tempNode = _tail;
+            _tail = node;
+            if (_size == 0)
+                _head = _tail;
             else
-                tempNode.Next = tail;
-            count++;
+                tempNode.Next = _tail;
+            _size++;
         }
 
-
-        // удаление из очереди
+        /// <summary> Извлечь данные из очереди </summary>
         public T Dequeue()
         {
-            if (count == 0)
+            if (_size == 0)
                 throw new InvalidOperationException();
-            T output = head.Data;
-            head = head.Next;
-            count--;
+            var output = _head.Data;
+            _head = _head.Next;
+            _size--;
             return output;
         }
-        // получаем первый элемент
+
+        /// <summary> Получить первый элемент </summary>
         T IQueue<T>.First()
         {
             if (IsEmpty())
                throw new InvalidOperationException();
-            return head.Data;
-           
+            return _head.Data;
         }
-        // получаем последний элемент
+
+        /// <summary> Получить последний элемент </summary>
         T IQueue<T>.Last()
         {
              if (IsEmpty())
                  throw new InvalidOperationException();
-             return tail.Data;
-       
+             return _tail.Data;
         }
-        public int Count { get { return count; } }
-        bool IQueue<T>.IsEmpty() {  return count == 0; }
 
+        /// <summary> Очистить очередь </summary>
         public void Clear()
         {
-            head = null;
-            tail = null;
-            count = 0;
+            _head = null;
+            _tail = null;
+            _size = 0;
         }
 
+        /// <summary> Проверить содержится ли в очереди элемент </summary>
+        /// <param name="data"> Проверяемый элемент </param>
         public bool Contains(T data)
         {
-            Node<T> current = head;
+            var current = _head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -97,7 +98,7 @@ namespace algLab_3.Queue
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            Node<T> current = head;
+            var current = _head;
             while (current != null)
             {
                 yield return current.Data;

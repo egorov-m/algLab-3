@@ -1,5 +1,5 @@
-﻿using System.Text;
-using algLab_3.Stack;
+﻿using System.Drawing;
+using System.Text;
 
 namespace algLab_3.Tests
 {
@@ -7,7 +7,7 @@ namespace algLab_3.Tests
     public class Tester
     {
         /// <summary> Вектор времени </summary>
-        private readonly Dictionary<int, double> _timeVector;
+        private readonly List<(int, double)> _timeVector;
         /// <summary> Начальное значение: количество операций </summary>
         private int _start;
         /// <summary> Конечное значение: количество операций </summary>
@@ -19,11 +19,11 @@ namespace algLab_3.Tests
         public static string FileNameTestData { get; private set; } = "input";
 
         /// <summary> Паттерн для тестирования по умолчанию </summary>
-        public static string PatternForTestingDefault { get; private set; } = "132"; // push top pop
+        public static string PatternForTestingDefault { get; private set; } = "4"; // push top pop
 
         /// <summary> Получить вектор времени </summary>
         /// <returns> Словарь, где key - количество операций, value - время в миллисекундах </returns>
-        public Dictionary<int, double> GetTimeVector() => _timeVector;
+        public List<(int, double)> GetTimeVector() => _timeVector;
 
         /// <summary> Инициализация тестера </summary>
         /// <param name="start"> Начальное значение: количество операций </param>
@@ -31,7 +31,7 @@ namespace algLab_3.Tests
         /// <param name="step"> Шаг: количество операций </param>
         public Tester(int start, int end, int step)
         {
-            _timeVector = new Dictionary<int, double>();
+            _timeVector = new List<(int, double)>();
             Init(start, end, step);
         }
 
@@ -40,7 +40,7 @@ namespace algLab_3.Tests
         /// <param name="step"> Шаг: количество операций </param>
         public Tester(int end = 25, int step = 1)
         {
-            _timeVector = new Dictionary<int, double>();
+            _timeVector = new List<(int, double)>();
             Init(1, end, step);
         }
 
@@ -51,9 +51,9 @@ namespace algLab_3.Tests
             _step = step;
         }
 
-        /// <summary> Тестировать </summary>
+        /// <summary> Тестировать обычным способом (число операций различно) </summary>
         /// <param name="newData"> Генерировать ли новые тестовые данные</param>
-        public void Testing(bool newData = true)
+        public void Testing(TypeTest type, bool newData = true)
         {
             if (newData || !File.Exists($"{FileNameTestData}.txt")) GenerateTestFile();
             var lines = File.ReadAllLines($"{FileNameTestData}.txt");
@@ -61,8 +61,35 @@ namespace algLab_3.Tests
             foreach (var l in lines)
             {
                 Console.WriteLine($"Размер набора операций: {index}.");
-                _timeVector.Add(index, Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), l));
+                switch (type)
+                {
+                    case TypeTest.Stack:
+                        _timeVector.Add((index, Stack.Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), l)));
+                        break;
+                    case TypeTest.Queue:
+                        _timeVector.Add((index, Queue.Task2.ParsingAndExecutingOperations(new Queue.Queue<object>(), l)));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+
                 index += _step;
+            }
+        }
+
+        public void TestingWithFixedLength(TypeTest type, string pattern, int size)
+        {
+            var str = GenerateInputString(size, pattern).ToString();
+            switch (type)
+            {
+                case TypeTest.Stack:
+                    _timeVector.Add((size, Stack.Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), str)));
+                    break;
+                case TypeTest.Queue:
+                    _timeVector.Add((size, Queue.Task2.ParsingAndExecutingOperations(new Queue.Queue<object>(), str)));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 
