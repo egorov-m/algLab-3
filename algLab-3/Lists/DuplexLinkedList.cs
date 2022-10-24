@@ -221,29 +221,82 @@ namespace algLab_3.Lists
             Tail.Next = null;
         }
 
+        /// <summary> Получить элемент списка по индексу </summary>
+        /// <param name="index"> Индекс элемента</param>
+        public T this[int index] => Find(index).Data;
+
+        /// <summary> Искать элемент списка по индексу </summary>
+        /// <param name="index"> Индекс элемента списка </param>
+        private Node<T> Find(int index)
+        {
+            if (Head == null)
+            {
+                return null;
+            }
+
+            var node = Head;
+            for (var i = 0; i < index; i++)
+            {
+                node = node.Next ?? throw new ArgumentException($"Элемента с индексом: {index} не существует.");
+            }
+
+            return node;
+        }
+
+        /// <summary> Получить первый элемент списка</summary>
+        public T First() => Head == null ? throw new InvalidOperationException("Список пуст.") : Head.Data;
+
+        /// <summary> Получить последний элемент списка</summary>
+        public T Last() => Head == null ? throw new InvalidOperationException("Список пуст.") : LastNode().Data;
+
+        /// <summary> Получить первый узел списка</summary>
+        private Node<T> FirstNode() => Head;
+
+        /// <summary> Получить последний узел списка</summary>
+        private Node<T> LastNode()
+        {
+            if (Head == null) return null;
+            var node = Head;
+            while (node.Next != null)
+            {
+                node = node.Next;
+            }
+
+            return node;
+        }
+
         /// <summary>
         /// 12.	Функция меняет местами два элемента списка, заданные пользователем;
         /// Часть 4. Задание 12.
         /// </summary>
-        /// <param name="item1"></param>
-        /// <param name="item2"></param>
-        public void SwapElement(Node<T> item1, Node<T> item2)
+        /// <param name="indexIem1"> Индекс первого элемента </param>
+        /// <param name="indexItem2"> Индекс второго элемента </param>
+        public void SwapElement(int indexIem1, int indexItem2)
         {
-            if (Count < 2) return;
-            Node<T> tmp;
-            tmp = item1.Prev;
-            item1.Prev = item2.Prev;
-            item2.Prev = tmp;
+            if (Count < 2 || indexIem1 == indexItem2) return;
+            var item1 = Find(indexIem1);
+            var item2 = Find(indexItem2);
 
-            tmp = item1.Next;
-            item1.Next = item2.Next;
-            item2.Next = tmp;
+            var a = item1.Prev;
+            var c = item1.Next;
+            var e = item2.Prev;
+            var g = item2.Next;
 
-            item1.Prev.Next = item2;
-            item2.Prev.Next = item1;
+            if (a != null) a.Next = item2;
+            else Head = item2;
 
-            item2.Next.Prev = item1;
-            item1.Next.Prev = item2;
+            item2.Prev = a;
+            item2.Next = c;
+
+            if (c != null) c.Prev = item2;
+
+            if (e != null) e.Next = item1;
+
+            item1.Prev = e;
+            item1.Next = g;
+
+            if (g != null) g.Prev = item1;
+            else Tail = item1;
         }
          
         /// <summary> Добавить элемент в начало списка </summary>
