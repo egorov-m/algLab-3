@@ -266,6 +266,30 @@ namespace algLab_3.Lists
         }
 
         /// <summary>
+        /// 3. Написать функцию, которая определяет количество различных элементов списка, содержащего целые числа.
+        /// Часть 4. Задание 3.
+        /// </summary>
+        public int UniqueElementsCount()
+        {
+            var current = Head;
+            var elements = new Lists.DuplexLinkedList<T>();
+            var count = 0;
+
+            while(current != null)
+            {
+                if (!elements.Contains(current.Data))
+                {
+                    elements.Add(current.Data);
+                    count++;
+                }
+
+                current = current.Next;
+            }
+
+            return count;
+        }
+
+        /// <summary>
         /// 12.	Функция меняет местами два элемента списка, заданные пользователем;
         /// Часть 4. Задание 12.
         /// </summary>
