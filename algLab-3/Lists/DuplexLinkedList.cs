@@ -176,6 +176,7 @@ namespace algLab_3.Lists
 
                 current = current.Next;
             }
+            foreach (var i in list2) Console.Write(i);
 
             return list2;
         }
@@ -195,6 +196,9 @@ namespace algLab_3.Lists
                 result.Add(current.Data);
                 current = current.Prev;
             }
+
+            foreach(var i in result)
+                Console.Write(i + " ");
             return result;
         }
 
@@ -215,6 +219,8 @@ namespace algLab_3.Lists
             Tail = currentHead;
             Head.Prev = null;
             Tail.Next = null;
+            Console.WriteLine("Последний элемент в начале: " + Head);
+            Console.WriteLine("Первый элемент в конце " + Tail);
         }
 
         /// <summary>
@@ -361,7 +367,11 @@ namespace algLab_3.Lists
             while(current != null)
             {
                 if (current.Data.Equals(data))
+                {
+                    Console.WriteLine("Удален следующий объект: " + data);
                     Delete(data);
+                }
+                    
                 current = current.Next;
             }
             return false;
@@ -381,7 +391,9 @@ namespace algLab_3.Lists
             {
                 list.Add((T)item);
             }
-            
+           
+            foreach(var i in list)
+                Console.Write(i + " ");
             return list;
         }
 

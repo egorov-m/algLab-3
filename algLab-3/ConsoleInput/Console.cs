@@ -1,5 +1,6 @@
 ﻿using algLab_3.Examples;
 using algLab_3.Lists;
+using algLab_3.Queue;
 using algLab_3.Stack;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Extensions = algLab_3.Lists.Extensions;
 
 namespace algLab_3.ConsoleInput
 {
@@ -21,7 +23,7 @@ namespace algLab_3.ConsoleInput
 
             System.Console.WriteLine("Про стеки");
             System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("1. ");
+            System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел...");
             System.Console.WriteLine("2. Вычисление выражения в постфиксной записи");
             System.Console.WriteLine("3. Преобразовать инфиксную запись в постфиксную ");
             System.Console.WriteLine("4. Выйти в главное меню ");
@@ -83,7 +85,7 @@ namespace algLab_3.ConsoleInput
 
             System.Console.WriteLine("Про Очереди");
             System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("1. ");
+            System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел... ");
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
@@ -93,7 +95,12 @@ namespace algLab_3.ConsoleInput
             {
                 case 1:
                     {
+                        var iQueue = new Queue.Queue<object>();
+                        System.Console.Write("Введите выражение: ");
+                        string examples = System.Console.ReadLine();
 
+                        Task2Queue.ParsingAndExecutingOperations(iQueue, examples);
+                        
                         break;
                     }
 
@@ -125,13 +132,14 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("3. Колличество целых чисел");
             System.Console.WriteLine("4. Удаление второго из двух одинаковых элементов");
             System.Console.WriteLine("5. Вставка самого себя");
-            System.Console.WriteLine("6. ");
+            System.Console.WriteLine("6. Написать функцию, которая вставляет в непустой список L...");
             System.Console.WriteLine("7. Удаление Е элементов");
-            System.Console.WriteLine("8. ");
+            System.Console.WriteLine("8. Написать функцию, которая вставляет в список L новый элемент F...");
             System.Console.WriteLine("9. Дописывание к списку E");
             System.Console.WriteLine("10. Разбиение на два списка");
             System.Console.WriteLine("11. Удваивание списка");
             System.Console.WriteLine("12. Меняет местами два элемента списка");
+            System.Console.WriteLine("13. Выход в главное меню");
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
@@ -141,7 +149,12 @@ namespace algLab_3.ConsoleInput
             {
                 case 1:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(3);
+                        list.Add(5);
+                        list.Add(7);
+
+                        list.Reverse();
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -150,7 +163,13 @@ namespace algLab_3.ConsoleInput
 
                 case 2:
                     {
-                       
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(3);
+                        list.Add(5);
+                        list.Add(7);
+
+                        list.SwapFirstAndLast();
+
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -159,7 +178,12 @@ namespace algLab_3.ConsoleInput
 
                 case 3:
                     {
-                       
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.ContainsSecond(4);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -168,7 +192,12 @@ namespace algLab_3.ConsoleInput
 
                 case 4:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.RemoveLast(4);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -177,15 +206,16 @@ namespace algLab_3.ConsoleInput
 
                 case 5:
                     {
-                        System.Console.Write("Введите опорный элемент: ");
-                        int supportElem = Convert.ToInt32(System.Console.ReadLine());
-                        System.Console.Write("Введите данные о вставке: ");
-                        int data = Convert.ToInt32(System.Console.ReadLine());
-
-                        //надо инициализировать элемент как объект!!
-                        var list = new Lists.LinkedList<object>();
-                        list.InsertAfter(supportElem, data);
+                        var list = new Lists.LinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(5);
+                        list.Add(7);
+                        list.InsertAfter(4, 4);
+                        foreach (var i in list) System.Console.Write(i + " ");
                         Thread.Sleep(3000);
+
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -202,7 +232,12 @@ namespace algLab_3.ConsoleInput
 
                 case 7:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.ContainsAllNumbers(4);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -211,7 +246,12 @@ namespace algLab_3.ConsoleInput
 
                 case 8:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.InsertBefore(4, 3);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -220,7 +260,12 @@ namespace algLab_3.ConsoleInput
 
                 case 9:
                     {
-                       
+                        var list = new Lists.LinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.AddLinkedList(list);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         ExamplePage();
@@ -229,7 +274,15 @@ namespace algLab_3.ConsoleInput
 
                 case 10:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.SplitIntoTwo(2);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -238,7 +291,12 @@ namespace algLab_3.ConsoleInput
 
                 case 11:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.DoublingList(list);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -247,10 +305,25 @@ namespace algLab_3.ConsoleInput
 
                 case 12:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int>();
+                        list.Add(4);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        list.Add(3);
+                        list.Add(4);
+                        list.Add(7);
+                        //list.SwapElement(list[1], 5);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
+                        break;
+                    }
+
+                case 13:
+                    {
+                        System.Console.Clear();
+                        MainPage();
                         break;
                     }
             }

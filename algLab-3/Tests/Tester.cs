@@ -67,7 +67,7 @@ namespace algLab_3.Tests
                         _timeVector.Add((index, Stack.Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), l)));
                         break;
                     case TypeTest.Queue:
-                        _timeVector.Add((index, Queue.Task2.ParsingAndExecutingOperations(new Queue.Queue<object>(), l)));
+                        _timeVector.Add((index, Queue.Task2Queue.ParsingAndExecutingOperations(new Queue.Queue<object>(), l)));
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -86,7 +86,7 @@ namespace algLab_3.Tests
                     _timeVector.Add((size, Stack.Task2.ParsingAndExecutingOperations(new Stack.Stack<object>(), str)));
                     break;
                 case TypeTest.Queue:
-                    _timeVector.Add((size, Queue.Task2.ParsingAndExecutingOperations(new Queue.Queue<object>(), str)));
+                    _timeVector.Add((size, Queue.Task2Queue.ParsingAndExecutingOperations(new Queue.Queue<object>(), str)));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
