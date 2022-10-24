@@ -176,7 +176,7 @@ namespace algLab_3.Lists
 
                 current = current.Next;
             }
-            foreach (var i in list2) Console.Write(i);
+            foreach (var i in list2) Console.Write(i + " ");
 
             return list2;
         }
@@ -219,8 +219,6 @@ namespace algLab_3.Lists
             Tail = currentHead;
             Head.Prev = null;
             Tail.Next = null;
-            Console.WriteLine("Последний элемент в начале: " + Head);
-            Console.WriteLine("Первый элемент в конце " + Tail);
         }
 
         /// <summary>
@@ -334,7 +332,6 @@ namespace algLab_3.Lists
             {
                 if (current.Data.Equals(data))
                 {
-                    Console.WriteLine("Удален следующий объект: " + data);
                     Delete(data);
                 }
                     
@@ -352,10 +349,10 @@ namespace algLab_3.Lists
         {
             var list2 = new DuplexLinkedList<T>();
             foreach(var i in list)
-                list2.Add((T)i);
+                list2.Add(i);
             foreach (var item in list2)
             {
-                list.Add((T)item);
+                list.Add(item);
             }
            
             foreach(var i in list)

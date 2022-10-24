@@ -190,7 +190,7 @@ namespace algLab_3.Lists
         {
             foreach (var item in list)
             {
-                Add((T)item);
+                Add(item);
             }
         }
 
