@@ -11,27 +11,6 @@ namespace algLab_3.Lists
         /// <summary> Имя файла с тестовыми данными </summary>
         public static string FileNameTestData { get; private set; } = "input";
 
-        /// <summary>
-        /// 3.	Написать функцию, которая определяет количество различных элементов списка, содержащего целые числа;
-        /// Часть 4. Задание 3.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        public static int CountUniqueElements<T>(this DuplexLinkedList<int> list)
-        {
-            var uniqueList = new DuplexLinkedList<int>();
-            foreach (var item in list)
-            {
-                if (!uniqueList.Contains((int)item))
-                {
-                    uniqueList.Add((int)item);
-                }
-            }
-
-            return uniqueList.Count;
-        }
-
         /// <summary> Чтение из файла списков для объединения (Часть 4. Задание 9.) </summary>
         public static LinkedList<int> GetListFromFileTask9()
         {

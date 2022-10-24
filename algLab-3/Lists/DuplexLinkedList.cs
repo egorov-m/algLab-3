@@ -360,7 +360,7 @@ namespace algLab_3.Lists
 
         /// <summary> Проверить что указанные данные содержатся </summary>
         /// <param name="data"> Данные </param>
-        public bool Contains(int data)
+        public bool Contains(T data)
         {
             var current = Head;
             while (current != null)
