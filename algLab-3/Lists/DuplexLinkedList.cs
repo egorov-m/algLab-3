@@ -5,7 +5,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Двусвязный список </summary>
     /// <typeparam name="T"> Тип элементов списка </typeparam>
-    public class DuplexLinkedList<T> : IEnumerable
+    public class DuplexLinkedList<T> : IEnumerable, IEnumerable<T>
     {
         /// <summary> Узел — элемент списка </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
@@ -452,23 +452,23 @@ namespace algLab_3.Lists
             Count = 0;
         }
 
-        //public IEnumerator<T> GetEnumerator<T>()
-        //{
-        //    var current = Head;
-        //    while (current != null)
-        //    {
-        //        yield return current;
-        //        current = current.Next;
-        //    }
-        //}
-
-        //IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        //{
-        //    return GetEnumerator<T>();
-        //}
         /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
         /// <returns> IEnumerator — проход по коллекции </returns>
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        private IEnumerator<T> GetEnumerator()
         {
             var current = Head;
             while (current != null)

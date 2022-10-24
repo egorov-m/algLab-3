@@ -5,7 +5,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Односвязный список </summary>
     /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
-    public class LinkedList<T> : IEnumerable
+    public class LinkedList<T> : IEnumerable<T>
     {
         /// <summary> Узел — элемент списка </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
@@ -224,7 +224,21 @@ namespace algLab_3.Lists
 
         /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
         /// <returns> IEnumerator — проход по коллекции </returns>
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        private IEnumerator<T> GetEnumerator()
         {
             var current = Head;
             while (current != null)

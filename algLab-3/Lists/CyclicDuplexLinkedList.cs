@@ -4,7 +4,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Циклический связный список </summary>
     /// <typeparam name="T"> Тип элементов списка </typeparam>
-    public class CyclicDuplexLinkedList<T> : IEnumerable<T>
+    public class CyclicDuplexLinkedList<T> : IEnumerable, IEnumerable<T>
     {
         /// <summary> Головной элемент списка </summary>
         public DuplexLinkedList<T>.Node<T> Head { get; private set; }
@@ -102,19 +102,30 @@ namespace algLab_3.Lists
             Count = 0;
         }
 
-        public IEnumerator GetEnumerator()
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <summary> Перечислитель, осуществляет итерационный переход по списку </summary>
+        /// <returns> IEnumerator — проход по коллекции </returns>
+        private IEnumerator<T> GetEnumerator()
         {
             var current = Head;
             for (var i = 0; i < Count; i++)
             {
-                yield return current;
+                yield return current.Data;
                 current = current.Next;
             }
-        }
-
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return (IEnumerator<T>) GetEnumerator();
         }
     }
 }
