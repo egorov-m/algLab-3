@@ -232,8 +232,8 @@ namespace algLab_3.ConsoleInput
 
                 case 4:
                     {
-                        //WRONG
-                        var list = new Lists.DuplexLinkedList<int>();
+                        //true
+                        var list = new Lists.LinkedList<int>();
                         list.Add(4);
                         list.Add(3);
                         list.Add(4);
@@ -246,9 +246,11 @@ namespace algLab_3.ConsoleInput
 
                         System.Console.WriteLine();
 
-                        System.Console.Write("ПОСЛЕ:");
-                        list.RemoveLast(4);
+                        list.DeleteSecondRepeatNumber();
 
+                        System.Console.Write("ПОСЛЕ:");
+                        foreach (var i in list)
+                            System.Console.Write(i + " ");
 
                         Thread.Sleep(3000);
                         System.Console.Clear();
