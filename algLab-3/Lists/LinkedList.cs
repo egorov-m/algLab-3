@@ -122,6 +122,33 @@ namespace algLab_3.Lists
         }
 
         /// <summary>
+        /// Написать функцию, которая удаляет из списка L второй из двух одинаковых элементов.
+        /// Часть 4. Задание 4.
+        /// </summary>
+        public void DeleteSecondRepeatNumber()
+        {
+            var current = Head;
+            Node<T> prev = null;
+            var elements = new Lists.DuplexLinkedList<T>();
+            while (current != null)
+            {
+                if (!elements.Contains(current.Data))
+                {
+                    elements.Add(current.Data);
+                    prev = current;
+                }
+                else
+                {
+                    if (current.Next == null) Tail = prev;
+                    prev.Next = current.Next;
+                    Count--;
+                }
+
+                current = current.Next;
+            }
+        }
+
+        /// <summary>
         /// 5. Написать функцию вставки списка самого в себя вслед за первым вхождением числа х;
         /// Часть 4. Задание 5.
         /// </summary>

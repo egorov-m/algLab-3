@@ -323,40 +323,6 @@ namespace algLab_3.Lists
         }
 
         /// <summary>
-        /// Написать функцию, которая удаляет из списка L второй из двух одинаковых элементов.
-        /// Часть 4. Задание 4.
-        /// </summary>
-        /// <returns> Новый список </returns>
-        public bool RemoveLast(T data)
-        {
-            var current = Tail;
-            while(current != null)
-            {
-                if (current.Data.Equals(data))
-                    break;
-                current = current.Next;
-            }
-            if(current != null)
-            {
-                if (current.Next != null)
-                    current.Next.Prev = current.Prev;
-
-                else
-                    Tail = current.Prev;
-
-                if (current.Prev != null)
-                    current.Prev.Next = current.Next;
-
-                else
-                    Head = current.Next;
-
-                Count--;
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Написать функцию, которая удаляет из списка L все элементы Е, если таковые имеются. 
         /// Часть 4. Задание 7.
         /// </summary>
