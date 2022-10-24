@@ -3,7 +3,7 @@
 namespace algLab_3.Queue
 {
     /// <summary> Часть 2. Задание 2. </summary>
-    public class Task2
+    public class Task2Queue
     {
         public static double ParsingAndExecutingOperations(IQueue<object> iQueue, string str)
         {
