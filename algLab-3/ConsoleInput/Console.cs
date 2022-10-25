@@ -1,14 +1,6 @@
 ﻿using algLab_3.Examples;
-using algLab_3.Lists;
 using algLab_3.Queue;
 using algLab_3.Stack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Extensions = algLab_3.Lists.Extensions;
 
 namespace algLab_3.ConsoleInput
 {
@@ -37,7 +29,7 @@ namespace algLab_3.ConsoleInput
                 case 1:
                     {
                         //для стека, можешь добавить конструктор с IEnumerable, по аналогии.
-                        var iStack = new algLab_3.Stack.Stack<object>();
+                        var iStack = new Stack.Stack<object>();
 
                         System.Console.Write("Введите выражение: ");
                         string examples = System.Console.ReadLine();
@@ -88,7 +80,7 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
-            int value = Convert.ToInt32(System.Console.ReadLine());
+            var value = Convert.ToInt32(System.Console.ReadLine());
 
             switch (value)
             {
@@ -96,7 +88,7 @@ namespace algLab_3.ConsoleInput
                     {
                         var iQueue = new Queue.Queue<object>();
                         System.Console.Write("Введите выражение: ");
-                        string examples = System.Console.ReadLine();
+                        var examples = System.Console.ReadLine();
 
                         Task2Queue.ParsingAndExecutingOperations(iQueue, examples);
                         
@@ -142,18 +134,14 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
-            int value = Convert.ToInt32(System.Console.ReadLine());
+            var value = Convert.ToInt32(System.Console.ReadLine());
 
             switch (value)
             {
                 case 1:
                     {
                         //true
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(3);
-                        list.Add(5);
-                        list.Add(12);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 3, 5, 12, 7 };
 
                         System.Console.Write("ДО: ");
                         foreach (var i in list)
@@ -203,12 +191,7 @@ namespace algLab_3.ConsoleInput
                 case 3:
                     {
                         //WRONG
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(12);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 12, 7 };
 
                         System.Console.Write("ДО:");
                         foreach(var i in list)
@@ -217,7 +200,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.WriteLine();
 
 
-                        list.ContainsSecond(4);
+                        list.UniqueElementsCount();
                         Thread.Sleep(3000);
 
                         System.Console.Write("ПОСЛЕ:");
@@ -233,11 +216,7 @@ namespace algLab_3.ConsoleInput
                 case 4:
                     {
                         //true
-                        var list = new Lists.LinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
+                        var list = new Lists.LinkedList<int> { 4, 3, 4, 7 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
@@ -261,12 +240,7 @@ namespace algLab_3.ConsoleInput
                 case 5:
                     {
                         //true
-                        var list = new Lists.LinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(5);
-                        list.Add(7);
+                        var list = new Lists.LinkedList<int> { 4, 3, 4, 5, 7 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
@@ -297,11 +271,7 @@ namespace algLab_3.ConsoleInput
                 case 7:
                     {
                         //true
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
@@ -324,11 +294,7 @@ namespace algLab_3.ConsoleInput
                 case 8:
                     {
                         //true
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
@@ -351,27 +317,16 @@ namespace algLab_3.ConsoleInput
                 case 9:
                     {
                         //true
-                        var list = new Lists.LinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
-                        var list2 = new Lists.LinkedList<int>();
-                        list2.Add(14);
-                        list2.Add(13);
-                        list2.Add(14);
-                        list2.Add(17);
-
+                        var list = new Lists.LinkedList<int> { 4, 3, 4, 7 };
+                        var list2 = new Lists.LinkedList<int>
+                        { 14, 13, 14, 17 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
                         Thread.Sleep(3000);
 
-
                         list.AddLinkedList(list2);
-
-
 
                         System.Console.WriteLine();
 
@@ -379,7 +334,6 @@ namespace algLab_3.ConsoleInput
                         foreach (var i in list)
                             System.Console.Write(i + " ");
                         Thread.Sleep(3000);
-
 
                         System.Console.Clear();
                         ExamplePage();
@@ -389,20 +343,12 @@ namespace algLab_3.ConsoleInput
                 case 10:
                     {
                         //true
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7, 3, 4, 7 };
 
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
                         Thread.Sleep(3000);
-
 
                         System.Console.WriteLine();
 
@@ -418,16 +364,11 @@ namespace algLab_3.ConsoleInput
                 case 11:
                     {
                         //true
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7 };
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
                         Thread.Sleep(3000);
-
 
                         System.Console.WriteLine();
 
@@ -442,15 +383,8 @@ namespace algLab_3.ConsoleInput
                 case 12:
                     {
                         //WRONG
-                        var list = new Lists.DuplexLinkedList<int>();
-                        list.Add(4);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
-                        list.Add(3);
-                        list.Add(4);
-                        list.Add(7);
-                        //list.SwapElement(list[1], 5);
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7, 3, 4, 7 };
+                        list.SwapElement(2, 4);
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();
@@ -464,22 +398,14 @@ namespace algLab_3.ConsoleInput
                         break;
                     }
             }
-
         }
-
-
-
-
-
 
         public static void ExamplePage()
         {
-
             System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
             System.Console.WriteLine("─██─███─███─██─██─██▄█");
             System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
             System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
-
 
             System.Console.WriteLine("Примеры. Динамические структуры");
             System.Console.WriteLine("-----------------------------");
@@ -491,15 +417,15 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
-            int value = Convert.ToInt32(System.Console.ReadLine());
+            var value = Convert.ToInt32(System.Console.ReadLine());
 
             switch (value)
             {
                 case 1:
                     {
                         System.Console.Write("Введите массив через пробел: ");
-                        string arrayStr = System.Console.ReadLine();
-                        string[] elements = arrayStr.Split(new Char[] { ' ' });
+                        var arrayStr = System.Console.ReadLine();
+                        var elements = arrayStr.Split(new Char[] { ' ' });
 
                         DeleteDuplicateFromLinkedList.ShowResult(elements);
                         Thread.Sleep(3000);
@@ -511,7 +437,7 @@ namespace algLab_3.ConsoleInput
                 case 2:
                     {
                         System.Console.Write("Введите предложение: ");
-                        string sentence = System.Console.ReadLine();
+                        var sentence = System.Console.ReadLine();
 
                         ReverseWords.ShowResult(sentence);
                         Thread.Sleep(3000);
@@ -522,7 +448,6 @@ namespace algLab_3.ConsoleInput
 
                 case 3:
                     {
-                        //Пока не знаю как исправить ввод данных
                         MaxLevelInBinaryTree.Node.ShowMaxLevel();
                         Thread.Sleep(3000);
                         System.Console.Clear();
@@ -533,7 +458,7 @@ namespace algLab_3.ConsoleInput
                 case 4:
                     {
                         System.Console.Write("Введите выражение: ");
-                        string examples = System.Console.ReadLine();
+                        var examples = System.Console.ReadLine();
                         ExpressionTree.ShowExpression(examples);
                         Thread.Sleep(3000);
                         System.Console.Clear();
@@ -558,10 +483,7 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
             System.Console.WriteLine("─██─███─███─██─██─██▄█");
             System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█"); 
-            
-            
-            
+            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
 
             System.Console.WriteLine("-----------------------------");
             System.Console.WriteLine("1. Про стеки");
@@ -571,7 +493,7 @@ namespace algLab_3.ConsoleInput
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Выберите номер задания: ");
-            int value = Convert.ToInt32(System.Console.ReadLine());
+            var value = Convert.ToInt32(System.Console.ReadLine());
 
 
             switch (value)

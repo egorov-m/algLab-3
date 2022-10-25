@@ -1,6 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-
-namespace algLab_3.Examples
+﻿namespace algLab_3.Examples
 {
     public static class DeleteDuplicateFromLinkedList
     {
@@ -15,8 +13,7 @@ namespace algLab_3.Examples
         public static void ShowResult(string[] elementsArray)
         {
 
-            int[] myInts = Array.ConvertAll(elementsArray, s => Convert.ToInt32(s));
-
+            var myInts = Array.ConvertAll(elementsArray, s => Convert.ToInt32(s));
 
             var list = new Lists.LinkedList<int>(myInts) { };
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;namespace algLab_3.Lists
+﻿namespace algLab_3.Lists
 {
     public static class Extensions
     {

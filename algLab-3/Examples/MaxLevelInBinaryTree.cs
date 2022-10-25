@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace algLab_3.Examples
+﻿namespace algLab_3.Examples
 {
     public class MaxLevelInBinaryTree
     {
@@ -20,14 +14,14 @@ namespace algLab_3.Examples
                 this.right = null;
             }
 
-            static int maxLevelSum(Node root)
+            static int MaxLevelSum(Node root)
             {
                 if (root == null)
                     return 0;
 
-                int result = root.data;
+                var result = root.data;
 
-                Queue<Node> queue = new Queue<Node>();
+                var queue = new Queue.Queue<Node>();
                 queue.Enqueue(root);
                 while (queue.Count != 0)
                 {
@@ -37,7 +31,7 @@ namespace algLab_3.Examples
                     while (count-- > 0)
                     {
 
-                        Node temp = queue.Dequeue();
+                        var temp = queue.Dequeue();
 
                         sum = sum + temp.data;
 
@@ -54,7 +48,7 @@ namespace algLab_3.Examples
 
             public static void ShowMaxLevel()
             {
-                Node root = new Node(1);
+                var root = new Node(1);
                 root.left = new Node(2);
                 root.right = new Node(3);
                 root.left.left = new Node(4);
@@ -63,7 +57,7 @@ namespace algLab_3.Examples
                 root.right.right.left = new Node(6);
                 root.right.right.right = new Node(7);
 
-                Console.WriteLine("Максимальная сумма равна " + maxLevelSum(root));
+                Console.WriteLine("Максимальная сумма равна " + MaxLevelSum(root));
             }
         }
     }

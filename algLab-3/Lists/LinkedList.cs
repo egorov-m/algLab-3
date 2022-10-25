@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 namespace algLab_3.Lists
 {
@@ -37,6 +36,22 @@ namespace algLab_3.Lists
             Clear();
         }
 
+        /// <summary> Инициализация списка с начальным элементом </summary>
+        /// <param name="item"> Элемент данных списка </param>
+        public LinkedList(T item)
+        {
+            var node = new Node<T>(item);
+            SetHeadAndTail(node);
+        }
+
+        /// <summary> Инициализировать список с начальной коллекцией </summary>
+        /// <param name="collection"> Начальная коллекция </param>
+        public LinkedList(IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            foreach (var obj in collection)
+                Add(obj);
+        }
 
         /// <summary>
         /// Удаление дубликатов с помощью односвязного списка;
@@ -47,7 +62,6 @@ namespace algLab_3.Lists
         {
             var ptr1 = Head;
             var ptr2 = ptr1;
-
 
             while (ptr1 != null && ptr1.Next != null)
             {
@@ -64,25 +78,6 @@ namespace algLab_3.Lists
                 }
                 ptr1 = ptr1.Next;
             }
-        }
-
-
-
-        /// <summary> Инициализация списка с начальным элементом </summary>
-        /// <param name="item"> Элемент данных списка </param>
-        public LinkedList(T item)
-        {
-            var node = new Node<T>(item);
-            SetHeadAndTail(node);
-        }
-
-        /// <summary> Инициализировать список с начальной коллекцией </summary>
-        /// <param name="collection"> Начальная коллекция </param>
-        public LinkedList(IEnumerable<T> collection)
-        {
-            if (collection == null) throw new ArgumentNullException(nameof(collection));
-            foreach (var obj in collection)
-                Add(obj);
         }
 
         /// <summary> Добавить элемент данных в список </summary>

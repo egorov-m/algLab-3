@@ -13,19 +13,19 @@
     }
     public class ExpressionTree
     {
-        public static bool isOperator(char ch)
+        public static bool IsOperator(char ch)
         {
             return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
         }
 
-        public static Node expressionTree(String postfix)
+        public static Node GetExpressionTree(String postfix)
         {
             var stack = new Stack.Stack<Node>();
             Node t1, t2, temp;
 
             for (var i = 0; i < postfix.Length; i++)
             {
-                if (!isOperator(postfix[i]))
+                if (!IsOperator(postfix[i]))
                 {
                     temp = new Node(postfix[i]);
                     stack.Push(temp);
@@ -46,19 +46,19 @@
             temp = stack.Pop();
             return temp;
         }
-        public static void inorder(Node root)
+        public static void Inorder(Node root)
         {
             if (root == null) return;
 
-            inorder(root.left);
+            Inorder(root.left);
             Console.Write(root.data);
-            inorder(root.right);
+            Inorder(root.right);
         }
 
         public static void ShowExpression(string postfix)
         {
-            var r = expressionTree(postfix);
-            inorder(r);
+            var r = GetExpressionTree(postfix);
+            Inorder(r);
         }
     }
 }

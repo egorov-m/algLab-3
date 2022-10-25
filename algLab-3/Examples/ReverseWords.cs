@@ -1,10 +1,8 @@
-﻿using algLab_3.Stack;
-using System;
-namespace algLab_3.Examples
+﻿namespace algLab_3.Examples
 {
     public static class ReverseWords
     {
-        public static void reverseWords(this string str)
+        public static void ReversingWords(this string str)
         {
             var stack = new Stack.Stack<char>();
 
@@ -29,7 +27,7 @@ namespace algLab_3.Examples
 
         public static void ShowResult(string word)
         {
-            reverseWords(word);
+            ReversingWords(word);
         }
     }
 }

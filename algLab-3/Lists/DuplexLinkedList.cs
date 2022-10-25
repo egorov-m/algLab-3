@@ -180,8 +180,8 @@ namespace algLab_3.Lists
         /// 10.	Функция разбивает список целых чисел на два списка по первому вхождению заданного числа. Если этого числа в списке нет, второй список будет пустым, а первый не изменится;
         /// Часть 4. Задание 10.
         /// </summary>
-        /// <param name="target"></param>
-        /// <returns></returns>
+        /// <param name="target"> Опорный элемент </param>
+        /// <returns> Второй список </returns>
         public DuplexLinkedList<T> SplitIntoTwo(T target)
         {
             var list2 = new DuplexLinkedList<T>();
@@ -228,8 +228,6 @@ namespace algLab_3.Lists
                 current = current.Prev;
             }
 
-            foreach(var i in result)
-                Console.Write(i + " ");
             return result;
         }
 
@@ -405,31 +403,6 @@ namespace algLab_3.Lists
         }
 
         /// <summary>
-        /// Написать функцию, которая определяет количество различных элементов списка, содержащего целые числа
-        /// Часть 4. Задание 3.
-        /// </summary>
-        /// <returns> Новый список </returns>
-        public bool ContainsSecond(T item)
-        {
-            var count = 0;
-            var current = Head;
-            while(current != null)
-            {
-                if (current.Data.Equals(item))
-                {
-                    count++;
-                    if(count == 2)
-                    {
-                        Delete(item);
-                        break;
-                    }
-                }
-                current = current.Next;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Написать функцию, которая удаляет из списка L все элементы Е, если таковые имеются. 
         /// Часть 4. Задание 7.
         /// </summary>
@@ -514,7 +487,6 @@ namespace algLab_3.Lists
                 SetHeadAndTail(new Node<T>(data));
             }
         }
-
 
         /// <summary> Установить головной и последний элемент списка </summary>
         /// <param name="node"> Элемент списка </param>

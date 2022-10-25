@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Text;
+﻿using System.Text;
 
 namespace algLab_3.Tests
 {
@@ -19,7 +18,7 @@ namespace algLab_3.Tests
         public static string FileNameTestData { get; private set; } = "input";
 
         /// <summary> Паттерн для тестирования по умолчанию </summary>
-        public static string PatternForTestingDefault { get; private set; } = "4"; // push top pop
+        public static string PatternForTestingDefault { get; private set; } = "132"; // push top pop
 
         /// <summary> Получить вектор времени </summary>
         /// <returns> Словарь, где key - количество операций, value - время в миллисекундах </returns>

@@ -2,6 +2,8 @@
 
 namespace algLab_3.Queue
 {
+    /// <summary> Класс очереди </summary>
+    /// <typeparam name="T"> Тип элементов очереди </typeparam>
     public class Queue<T> : IEnumerable<T>, IQueue<T>, IEnumerable, IReadOnlyCollection<T>
     {
         /// <summary> Класс элемент очереди </summary>
