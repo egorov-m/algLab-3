@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 namespace algLab_3.Lists
 {
@@ -62,6 +61,38 @@ namespace algLab_3.Lists
         {
             var node = new Node<T>(item);
             Add(node);
+        }
+
+        /// <summary> Добавить элемент в список по индексу </summary>
+        /// <param name="element"> Элемент </param>
+        /// <param name="index"> Индекс </param>
+        public void Add(T element, int index)
+        {
+            if (index < 0 || index > Count + 1) throw new IndexOutOfRangeException();
+            Count++;
+            var newNode = new Node<T>(element);
+            var node = Head;
+            if (index == Count + 1)
+            {
+                Add(element);
+                return;
+            }
+
+            if (index == 0)
+            {
+                AddFirst(element);
+                return;
+            }
+
+            for (var i = 1; i < index; i++)
+            {
+                node = node.Next;
+            }
+
+            newNode.Next = node.Next;
+            newNode.Prev = node;
+            node.Next = newNode;
+            newNode.Next.Prev = newNode;
         }
 
         /// <summary> Добавить элемент в список </summary>
@@ -352,9 +383,10 @@ namespace algLab_3.Lists
                 return;
             }
             var temp = Tail;
-            node.Next = Tail;
+            node.Next = null;
+            node.Prev = Tail;
+            temp.Next = node;
             Tail = node;
-            temp.Prev = node;
             Count++;
         }
 

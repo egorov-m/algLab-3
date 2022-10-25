@@ -1,15 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace algLab_3.Lists
+using System.Collections.Generic;namespace algLab_3.Lists
 {
     public static class Extensions
     {
         /// <summary> Имя файла с тестовыми данными </summary>
         public static string FileNameTestData { get; private set; } = "input";
+
+        /// <summary>
+        /// 6. Написать функцию, которая вставляет в непустой список L, элементы которого упорядочены по не убыванию, новый элемент Е так, чтобы сохранилась упорядоченность.
+        /// Часть 4. Задание 6.
+        /// </summary>
+        /// <param name="list"> Упорядоченный не по убыванию список </param>
+        /// <param name="element"> Добавляемы элемент </param>
+        public static void InsertElementOrder(this Lists.DuplexLinkedList<int> list, int element)
+        {
+            if (list.Count == 0) list.Add(element);
+            for (var i = 0; i < list.Count; i++)
+            {
+                if (list[i] >= element)
+                {
+                    list.Add(element, i);
+                    return;
+                }
+            }
+            list.AddLast(element);
+        }
 
         /// <summary> Чтение из файла списков для объединения (Часть 4. Задание 9.) </summary>
         public static LinkedList<int> GetListFromFileTask9()
