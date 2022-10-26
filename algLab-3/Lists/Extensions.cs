@@ -23,6 +23,10 @@
                 }
             }
             list.AddLast(element);
+            
+
+            foreach(var i in list)
+                Console.Write(i + " ");
         }
 
         /// <summary> Чтение из файла списков для объединения (Часть 4. Задание 9.) </summary>

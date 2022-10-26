@@ -190,22 +190,21 @@ namespace algLab_3.ConsoleInput
 
                 case 3:
                     {
-                        //WRONG
+                        //true
                         var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 12, 7 };
 
-                        System.Console.Write("ДО:");
+                        System.Console.Write("МАССИВ:");
                         foreach(var i in list)
                             System.Console.Write(i + " ");
 
                         System.Console.WriteLine();
 
 
-                        list.UniqueElementsCount();
+                        
                         Thread.Sleep(3000);
 
-                        System.Console.Write("ПОСЛЕ:");
-                        foreach (var i in list)
-                            System.Console.Write(i + " ");
+                        System.Console.Write("РЕЗУЛЬТАТ:");
+                        list.UniqueElementsCount();
 
                         Thread.Sleep(3000);
                         System.Console.Clear();
@@ -261,8 +260,20 @@ namespace algLab_3.ConsoleInput
 
                 case 6:
                     {
-                        
+                        var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 5, 7 };
+
+                        System.Console.Write("ДО:");
+                        foreach (var i in list)
+                            System.Console.Write(i + " ");
                         Thread.Sleep(3000);
+
+                        System.Console.WriteLine();
+
+                        System.Console.Write("ПОСЛЕ:");
+                        Lists.Extensions.InsertElementOrder(list, 6);
+                        foreach (var i in list) System.Console.Write(i + " ");
+                        Thread.Sleep(3000);
+
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -382,9 +393,21 @@ namespace algLab_3.ConsoleInput
 
                 case 12:
                     {
-                        //WRONG
+                        //true
                         var list = new Lists.DuplexLinkedList<int> { 4, 3, 4, 7, 3, 4, 7 };
+
+                        System.Console.Write("ДО:");
+                        foreach (var i in list)
+                            System.Console.Write(i + " ");
+                        Thread.Sleep(3000);
+
                         list.SwapElement(2, 4);
+
+                        System.Console.WriteLine();
+
+                        System.Console.Write("ПОСЛЕ:");
+                        foreach (var i in list)
+                            System.Console.Write(i + " ");
                         Thread.Sleep(3000);
                         System.Console.Clear();
                         AlgorithmsList();

@@ -228,6 +228,9 @@ namespace algLab_3.Lists
                 current = current.Prev;
             }
 
+            foreach(var i in result)
+                Console.Write(i + " ");
+
             return result;
         }
 
@@ -315,6 +318,7 @@ namespace algLab_3.Lists
                 current = current.Next;
             }
 
+            Console.WriteLine(count);
             return count;
         }
 
