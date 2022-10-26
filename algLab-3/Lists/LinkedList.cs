@@ -74,7 +74,7 @@ namespace algLab_3.Lists
                         ptr2.Next = ptr2.Next.Next;
                     
                     else 
-                        ptr2 = ptr2.Next.Next;
+                        ptr2 = ptr2.Next;
                 }
                 ptr1 = ptr1.Next;
             }
@@ -149,32 +149,95 @@ namespace algLab_3.Lists
         /// </summary>
         /// <param name="target"> Опорный элемент </param>
         /// <param name="data"> Данные для вставки </param>
-        public void InsertAfter(T target, T data)
-        {
-            if (Head != null)
-            {
-                var current = Head;
-                while (current != null)
-                {
-                    if (current.Data.Equals(target))
-                    {
-                        var node = new Node<T>(data);
-                        node.Next = current.Next;
-                        Head.Next = node;
-                        Count++;
-                        return;
-                    }
-                    else
-                    {
-                        current = current.Next;
-                    }
-                }
-            }
-            else
-            {
-                SetHeadAndTail(new Node<T>(data));
-            }
-        }
+        /// 
+
+
+        /*---------------------------------------*/
+        /* К чему докопался Николаев: 
+        1. привести примеры реальной реализации к описанию примеров в 3 задании
+        2. реализовать 5 задание
+        3. исправить консольный интерфейс */
+
+        //public void InsertAfter(T target)
+        //{
+        //    Node<T> current = Head;
+        //    Node<T> previous = null;
+        //    int countOld = Count;
+        //    int countNum = 0;
+
+        //    while (current != null)
+        //    {
+        //        if (previous != null && previous.Data.Equals(target))
+        //        {
+        //            Node<T> beforeX = Head;
+        //            int before = countNum;
+        //            Node<T> newCurrent = new Node<T>(beforeX.Data);
+        //            for (int i = 0; i < before; i++)
+        //            {
+        //                AddAt(beforeX.Data, countNum);
+        //                countNum++;
+        //                beforeX = beforeX.Next;
+        //            }
+        //            Node<T> afterX = current;
+        //            newCurrent = new Node<T>(afterX.Data);
+        //            for (int i = countNum; i < countOld + 3; i++)
+        //            {
+        //                AddAt(afterX.Data, i);
+        //                afterX = afterX.Next;
+        //            }
+        //        }
+        //        countNum++;
+        //        previous = current;
+        //        current = current.Next;
+        //    }
+        //}
+
+        //public void AddAt(T data, int n)
+        //{
+        //    Node<T> current = Head;
+        //    Node<T> prev = null;
+        //    Node<T> newData = new Node<T>(data);
+        //    int countNum = 0;
+
+        //    if (Head == null)
+        //    {
+        //        Head = newData;
+        //        return;
+        //        Count++;
+        //    }
+        //    if (n == 0)
+        //    {
+        //        newData.Next = Head;
+        //        Head = newData;
+        //        Count++;
+        //        return;
+        //    }
+        //    if (n == Count)
+        //    {
+        //        Tail.Next = newData;
+        //        Tail = newData;
+        //        Count++;
+        //        return;
+        //    }
+        //    while (current != null && countNum < Count)
+        //    {
+        //        if (countNum == n)
+        //        {
+        //            prev.Next = newData;
+        //            newData.Next = current;
+        //            Count++;
+        //            return;
+        //        }
+        //        countNum++;
+        //        prev = current;
+        //        current = current.Next;
+        //    }
+        //}
+
+
+        /*----------------------------------------------*/
+
+
 
         /// <summary>
         /// 9.	Функция дописывает к списку L список E. Оба списка содержат целые числа. В основной программе считать их из файла;

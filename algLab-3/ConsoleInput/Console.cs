@@ -8,17 +8,13 @@ namespace algLab_3.ConsoleInput
     {
         public static void StackPage()
         {
-            System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
-            System.Console.WriteLine("─██─███─███─██─██─██▄█");
-            System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
 
             System.Console.WriteLine("Про стеки");
             System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел...");
-            System.Console.WriteLine("2. Вычисление выражения в постфиксной записи");
-            System.Console.WriteLine("3. Преобразовать инфиксную запись в постфиксную ");
-            System.Console.WriteLine("4. Выйти в главное меню ");
+            //System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел...");
+            System.Console.WriteLine("1. Вычисление выражения в постфиксной записи");
+            System.Console.WriteLine("2. Преобразовать инфиксную запись в постфиксную ");
+            System.Console.WriteLine("3. Выйти в главное меню ");
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Введите порядковый номер: ");
@@ -26,78 +22,33 @@ namespace algLab_3.ConsoleInput
 
             switch (value)
             {
+
+
                 case 1:
-                    {
-                        //для стека, можешь добавить конструктор с IEnumerable, по аналогии.
-                        var iStack = new Stack.Stack<object>();
-
-                        System.Console.Write("Введите выражение: ");
-                        string examples = System.Console.ReadLine();
-
-                        Task2.ParsingAndExecutingOperations(iStack, examples);
-
-                        break;
-                    }
-
-
-                case 2:
                     {
                         System.Console.Write("Введите выражение (постфикс): ");
                         string examples = System.Console.ReadLine();
                         Stack.Task4.Calculate(examples);
-                        break;
-                    }
-
-
-                case 3:
-                    {
-                        System.Console.Write("Введите запись (не забывайте про пробелы!): ");
-                        string examples = System.Console.ReadLine();
-                        Stack.Task5.InfixToPrefix(examples);
-                        break;
-                    }
-
-                case 4:
-                    {
+                        Thread.Sleep(3000);
                         System.Console.Clear();
-                        MainPage();
-                        break;
-                    }
-            }
-
-        }
-
-        public static void QueuePage()
-        {
-            System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
-            System.Console.WriteLine("─██─███─███─██─██─██▄█");
-            System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
-
-            System.Console.WriteLine("Про Очереди");
-            System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел... ");
-            System.Console.WriteLine("-----------------------------");
-
-            System.Console.Write("Введите порядковый номер: ");
-            var value = Convert.ToInt32(System.Console.ReadLine());
-
-            switch (value)
-            {
-                case 1:
-                    {
-                        var iQueue = new Queue.Queue<object>();
-                        System.Console.Write("Введите выражение: ");
-                        var examples = System.Console.ReadLine();
-
-                        Task2Queue.ParsingAndExecutingOperations(iQueue, examples);
-                        
+                        StackPage();
                         break;
                     }
 
 
                 case 2:
                     {
+                        System.Console.Write("Введите запись (не забывайте про пробелы!): ");
+                        string examples = System.Console.ReadLine();
+                        Stack.Task5.InfixToPrefix(examples);
+                        Thread.Sleep(30000);
+                        System.Console.Clear();
+                        StackPage();
+                        break;
+                    }
+
+                case 3:
+                    {
                         System.Console.Clear();
                         MainPage();
                         break;
@@ -105,15 +56,48 @@ namespace algLab_3.ConsoleInput
             }
 
         }
+
+        //public static void QueuePage()
+        //{
+
+        //    System.Console.WriteLine("Про Очереди");
+        //    System.Console.WriteLine("-----------------------------");
+        //    System.Console.WriteLine("1. В файле input.txt записаны числа от 1 до 5 через пробел... ");
+        //    System.Console.WriteLine("-----------------------------");
+
+        //    System.Console.Write("Введите порядковый номер: ");
+        //    var value = Convert.ToInt32(System.Console.ReadLine());
+
+        //    switch (value)
+        //    {
+        //        case 1:
+        //            {
+        //                var iQueue = new Queue.Queue<object>();
+        //                System.Console.Write("Введите выражение: ");
+        //                var examples = System.Console.ReadLine();
+
+        //                Task2Queue.ParsingAndExecutingOperations(iQueue, examples);
+        //                Thread.Sleep(3000);
+        //                System.Console.Clear();
+        //                QueuePage();
+        //                break;
+        //            }
+
+
+        //        case 2:
+        //            {
+        //                System.Console.Clear();
+        //                MainPage();
+        //                break;
+        //            }
+        //    }
+
+        //}
 
 
 
         public static void AlgorithmsList()
         {
-            System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
-            System.Console.WriteLine("─██─███─███─██─██─██▄█");
-            System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
 
 
             System.Console.WriteLine("Алгоритмы со списками");
@@ -146,15 +130,15 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО: ");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
                         list.Reverse();
 
-                       
-                        Thread.Sleep(3000);
+
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -171,7 +155,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО: ");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.WriteLine();
 
 
@@ -182,7 +166,7 @@ namespace algLab_3.ConsoleInput
                         foreach (var i in list)
                             System.Console.Write(i + " ");
 
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -200,13 +184,13 @@ namespace algLab_3.ConsoleInput
                         System.Console.WriteLine();
 
 
-                        
-                        Thread.Sleep(3000);
+
+                        System.Console.ReadKey();
 
                         System.Console.Write("РЕЗУЛЬТАТ:");
                         list.UniqueElementsCount();
 
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -220,7 +204,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
@@ -230,7 +214,7 @@ namespace algLab_3.ConsoleInput
                         foreach (var i in list)
                             System.Console.Write(i + " ");
 
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -244,14 +228,14 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
-                        list.InsertAfter(4, 4);
+                        list.InsertAfter(4);
                         foreach (var i in list) System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.Clear();
                         AlgorithmsList();
@@ -265,14 +249,14 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
                         Lists.Extensions.InsertElementOrder(list, 6);
                         foreach (var i in list) System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.Clear();
                         AlgorithmsList();
@@ -287,7 +271,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
@@ -296,7 +280,7 @@ namespace algLab_3.ConsoleInput
 
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -310,7 +294,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
@@ -319,7 +303,7 @@ namespace algLab_3.ConsoleInput
 
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -335,7 +319,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         list.AddLinkedList(list2);
 
@@ -344,7 +328,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ПОСЛЕ:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.Clear();
                         ExamplePage();
@@ -359,14 +343,14 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
                         list.SplitIntoTwo(3);
 
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -379,13 +363,13 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
                         list.DoublingList(list);
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -399,7 +383,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ДО:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
 
                         list.SwapElement(2, 4);
 
@@ -408,7 +392,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.Write("ПОСЛЕ:");
                         foreach (var i in list)
                             System.Console.Write(i + " ");
-                        Thread.Sleep(3000);
+                        System.Console.ReadKey();
                         System.Console.Clear();
                         AlgorithmsList();
                         break;
@@ -425,10 +409,6 @@ namespace algLab_3.ConsoleInput
 
         public static void ExamplePage()
         {
-            System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
-            System.Console.WriteLine("─██─███─███─██─██─██▄█");
-            System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
 
             System.Console.WriteLine("Примеры. Динамические структуры");
             System.Console.WriteLine("-----------------------------");
@@ -503,16 +483,11 @@ namespace algLab_3.ConsoleInput
 
         public static void MainPage()
         {
-            System.Console.WriteLine("▀██▀─▄███▄─▀██─██▀██▀▀█");
-            System.Console.WriteLine("─██─███─███─██─██─██▄█");
-            System.Console.WriteLine("─██─▀██▄██▀─▀█▄█▀─██▀█");
-            System.Console.WriteLine("▄██▄▄█▀▀▀─────▀──▄██▄▄█");
 
             System.Console.WriteLine("-----------------------------");
             System.Console.WriteLine("1. Про стеки");
-            System.Console.WriteLine("2. Про очередь");
-            System.Console.WriteLine("3. Примеры");
-            System.Console.WriteLine("4. Алгоритмы со списками");
+            System.Console.WriteLine("2. Примеры");
+            System.Console.WriteLine("3. Алгоритмы со списками");
             System.Console.WriteLine("-----------------------------");
 
             System.Console.Write("Выберите номер задания: ");
@@ -531,18 +506,11 @@ namespace algLab_3.ConsoleInput
                 case 2:
                     {
                         System.Console.Clear();
-                        QueuePage();
-                        break;
-                    }
-
-                case 3:
-                    {
-                        System.Console.Clear();
                         ExamplePage();
                         break;
                     }
 
-                case 4:
+                case 3:
                     {
                         System.Console.Clear();
                         AlgorithmsList();
