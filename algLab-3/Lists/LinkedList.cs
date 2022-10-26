@@ -148,96 +148,89 @@ namespace algLab_3.Lists
         /// Часть 4. Задание 5.
         /// </summary>
         /// <param name="target"> Опорный элемент </param>
-        /// <param name="data"> Данные для вставки </param>
-        /// 
+        public void InsertCopyListAfter(T target)
+        {
+            var current = Head;
+            Node<T> prev = null;
+            var countOld = Count;
+            var countNew = 0;
 
+            while (current != null)
+            {
+                if (prev != null && prev.Data.Equals(target))
+                {
+                    var beforeNode = Head;
+                    var beforeCount = countNew;
+                    for (var i = 0; i < beforeCount; i++)
+                    {
+                        Add(beforeNode.Data, countNew);
+                        countNew++;
+                        beforeNode = beforeNode.Next;
+                    }
+                    var afterNode = current;
+                    for (var i = countNew; i < countOld - beforeCount + countNew; i++)
+                    {
+                        Add(afterNode.Data, i);
+                        afterNode = afterNode.Next;
+                    }
+                    break;
+                }
+                countNew++;
+                prev = current;
+                current = current.Next;
+            }
+        }
 
-        /*---------------------------------------*/
-        /* К чему докопался Николаев: 
-        1. привести примеры реальной реализации к описанию примеров в 3 задании
-        2. реализовать 5 задание
-        3. исправить консольный интерфейс */
+        /// <summary>
+        /// Добавление элемента в список по индексу
+        /// Дополнительный метод для Часть 4. Задание 5.
+        /// </summary>
+        /// <param name="data"> Данные </param>
+        /// <param name="index"> Индекс </param>
+        public void Add(T data, int index)
+        {
+            var current = Head;
+            Node<T> prev = null;
+            var newNode = new Node<T>(data);
+            var countNum = 0;
 
-        //public void InsertAfter(T target)
-        //{
-        //    Node<T> current = Head;
-        //    Node<T> previous = null;
-        //    int countOld = Count;
-        //    int countNum = 0;
+            if (Head == null)
+            {
+                Head = newNode;
+                Count++;
+                return;
+            }
 
-        //    while (current != null)
-        //    {
-        //        if (previous != null && previous.Data.Equals(target))
-        //        {
-        //            Node<T> beforeX = Head;
-        //            int before = countNum;
-        //            Node<T> newCurrent = new Node<T>(beforeX.Data);
-        //            for (int i = 0; i < before; i++)
-        //            {
-        //                AddAt(beforeX.Data, countNum);
-        //                countNum++;
-        //                beforeX = beforeX.Next;
-        //            }
-        //            Node<T> afterX = current;
-        //            newCurrent = new Node<T>(afterX.Data);
-        //            for (int i = countNum; i < countOld + 3; i++)
-        //            {
-        //                AddAt(afterX.Data, i);
-        //                afterX = afterX.Next;
-        //            }
-        //        }
-        //        countNum++;
-        //        previous = current;
-        //        current = current.Next;
-        //    }
-        //}
+            if (index == 0)
+            {
+                newNode.Next = Head;
+                Head = newNode;
+                Count++;
+                return;
+            }
 
-        //public void AddAt(T data, int n)
-        //{
-        //    Node<T> current = Head;
-        //    Node<T> prev = null;
-        //    Node<T> newData = new Node<T>(data);
-        //    int countNum = 0;
+            if (index == Count)
+            {
+                Tail.Next = newNode;
+                Tail = newNode;
+                Count++;
+                return;
+            }
 
-        //    if (Head == null)
-        //    {
-        //        Head = newData;
-        //        return;
-        //        Count++;
-        //    }
-        //    if (n == 0)
-        //    {
-        //        newData.Next = Head;
-        //        Head = newData;
-        //        Count++;
-        //        return;
-        //    }
-        //    if (n == Count)
-        //    {
-        //        Tail.Next = newData;
-        //        Tail = newData;
-        //        Count++;
-        //        return;
-        //    }
-        //    while (current != null && countNum < Count)
-        //    {
-        //        if (countNum == n)
-        //        {
-        //            prev.Next = newData;
-        //            newData.Next = current;
-        //            Count++;
-        //            return;
-        //        }
-        //        countNum++;
-        //        prev = current;
-        //        current = current.Next;
-        //    }
-        //}
-
-
-        /*----------------------------------------------*/
-
-
+            while (current != null && countNum < Count)
+            {
+                if (countNum == index)
+                {
+                    prev.Next = newNode;
+                    newNode.Next = current;
+                    Count++;
+                    return;
+                }
+                countNum++;
+                prev = current;
+                current = current.Next;
+            }
+        }
 
         /// <summary>
         /// 9.	Функция дописывает к списку L список E. Оба списка содержат целые числа. В основной программе считать их из файла;

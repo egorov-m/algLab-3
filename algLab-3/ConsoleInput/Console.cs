@@ -233,7 +233,7 @@ namespace algLab_3.ConsoleInput
                         System.Console.WriteLine();
 
                         System.Console.Write("ПОСЛЕ:");
-                        list.InsertAfter(4);
+                        list.InsertCopyListAfter(4);
                         foreach (var i in list) System.Console.Write(i + " ");
                         System.Console.ReadKey();
 
@@ -409,7 +409,6 @@ namespace algLab_3.ConsoleInput
 
         public static void ExamplePage()
         {
-
             System.Console.WriteLine("Примеры. Динамические структуры");
             System.Console.WriteLine("-----------------------------");
             System.Console.WriteLine("1. Удаление дубликатов из списка");
