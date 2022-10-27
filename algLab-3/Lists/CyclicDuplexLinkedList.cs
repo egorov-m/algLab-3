@@ -4,7 +4,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Циклический связный список </summary>
     /// <typeparam name="T"> Тип элементов списка </typeparam>
-    public class CyclicDuplexLinkedList<T> : IEnumerable, IEnumerable<T>
+    public class CyclicDuplexLinkedList<T> : IEnumerable, IEnumerable<T>, ICollection<T>
     {
         /// <summary> Головной элемент списка </summary>
         public DuplexLinkedList<T>.Node<T> Head { get; private set; }

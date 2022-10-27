@@ -4,7 +4,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Односвязный список </summary>
     /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
-    public class LinkedList<T> : IEnumerable<T>
+    public class LinkedList<T> : IEnumerable<T>, ICollection<T>
     {
         /// <summary> Узел — элемент списка </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
@@ -58,7 +58,7 @@ namespace algLab_3.Lists
         /// Часть 3.
         /// </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
-        public void RemoveDuplicates<T>()
+        public void RemoveDuplicates()
         {
             var ptr1 = Head;
             var ptr2 = ptr1;
@@ -72,7 +72,7 @@ namespace algLab_3.Lists
 
                     if (ptr1.Data.Equals(ptr2.Next.Data))
                         ptr2.Next = ptr2.Next.Next;
-                    
+
                     else 
                         ptr2 = ptr2.Next;
                 }
@@ -155,7 +155,7 @@ namespace algLab_3.Lists
             var countOld = Count;
             var countNew = 0;
 
-            while (current != null)
+            do
             {
                 if (prev != null && prev.Data.Equals(target))
                 {
@@ -167,18 +167,43 @@ namespace algLab_3.Lists
                         countNew++;
                         beforeNode = beforeNode.Next;
                     }
+
                     var afterNode = current;
                     for (var i = countNew; i < countOld - beforeCount + countNew; i++)
                     {
                         Add(afterNode.Data, i);
                         afterNode = afterNode.Next;
                     }
+
                     break;
                 }
+
                 countNew++;
                 prev = current;
                 current = current.Next;
+            } while (prev != null);
+        }
+
+        /// <summary> Получить элемент списка по индексу </summary>
+        /// <param name="index"> Индекс элемента</param>
+        public Node<T> this[int index] => Find(index);
+
+        /// <summary> Искать элемент списка по индексу </summary>
+        /// <param name="index"> Индекс элемента списка </param>
+        private Node<T> Find(int index)
+        {
+            if (Head == null)
+            {
+                return null;
             }
+
+            var node = Head;
+            for (var i = 0; i < index; i++)
+            {
+                node = node.Next ?? throw new ArgumentException($"Элемента с индексом: {index} не существует.");
+            }
+
+            return node;
         }
 
         /// <summary>
@@ -276,7 +301,7 @@ namespace algLab_3.Lists
             }
             else
             {
-                SetHeadAndTail(new Node<T>(data));
+                // SetHeadAndTail(new Node<T>(data));
             }
         }
 

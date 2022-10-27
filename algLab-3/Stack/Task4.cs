@@ -38,7 +38,6 @@
             }
 
             var resultInput = Math.Round(stack.Pop(), 3);
-            Console.WriteLine(resultInput);
             return resultInput;
         }
 

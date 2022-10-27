@@ -54,8 +54,7 @@ namespace algLab_3.Stack
                 numberQueue.Enqueue(operatorsStack.Pop());
             }
             
-            string result = string.Join(' ', numberQueue);
-            Console.WriteLine(result);
+            var result = string.Join(' ', numberQueue);
             return result;
         }
 

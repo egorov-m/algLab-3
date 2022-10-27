@@ -4,7 +4,7 @@ namespace algLab_3.Lists
 {
     /// <summary> Двусвязный список </summary>
     /// <typeparam name="T"> Тип элементов списка </typeparam>
-    public class DuplexLinkedList<T> : IEnumerable, IEnumerable<T>
+    public class DuplexLinkedList<T> : IEnumerable, IEnumerable<T>, ICollection<T>
     {
         /// <summary> Узел — элемент списка </summary>
         /// <typeparam name="T"> Тип данных хранимых в списке </typeparam>
@@ -110,6 +110,48 @@ namespace algLab_3.Lists
             Count++;
         }
 
+        /// <summary>
+        /// Удаление элемента по индексу </summary>
+        /// <param name="index"> Индекс </param>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public void Delete(int index)
+        {
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            var node = Head;
+            if (index == 0 || Count == 1)
+            {
+                if (Head == Tail)
+                {
+                    Head = null;
+                    Tail = null;
+                }
+                else
+                {
+                    Head = Head.Next;
+                    Head.Prev = null;
+                }
+                return;
+            }
+            if (index == Count - 1)
+            {
+                Tail = Tail.Prev;
+                Tail.Next.Prev = null;
+                Tail.Next = null;
+                Count--;
+                return;
+            }
+            for (int i = 0; i < index; i++)
+            {
+                node = node.Next;
+            }
+            node.Next.Prev = node.Prev;
+            node.Prev.Next = node.Next;
+            node.Next = null;
+            node.Prev = null;
+            node = null;
+            Count--;
+        }
+
         /// <summary> Удалить первое вхождение данных в список </summary>
         /// <param name="data"> Удаляемые данные </param>
         public void Delete(T data)
@@ -184,32 +226,26 @@ namespace algLab_3.Lists
         /// <returns> Второй список </returns>
         public DuplexLinkedList<T> SplitIntoTwo(T target)
         {
-            var list2 = new DuplexLinkedList<T>();
             var current = Head;
-            var flag = false;
-
             while (current != null)
             {
-                if (!flag)
+                if (current.Data.Equals(target))
                 {
-                    if (current.Data.Equals(target))
+                    var list = new DuplexLinkedList<T>();
+                    Node<T> item = null;
+                    while (current != null)
                     {
-                        flag = true;
-                        list2.Add(current);
-                        Delete(current);
+                        list.Add(current.Data);
+                        item = current;
+                        current = current.Next;
+                        Delete(item.Data);
                     }
-                }
-                else
-                {
-                    list2.Add(current);
-                    Delete(current);
+                    return list;
                 }
 
                 current = current.Next;
             }
-            foreach (var i in list2) Console.Write(i + " ");
-
-            return list2;
+            return new DuplexLinkedList<T>();
         }
 
         /// <summary>
@@ -217,21 +253,21 @@ namespace algLab_3.Lists
         /// Часть 4. Задание 1.
         /// </summary>
         /// <returns> Новый список </returns>
-        public DuplexLinkedList<T> Reverse()
+        public void Reverse()
         {
-            var result = new DuplexLinkedList<T>();
-
-            var current = Tail;
-            while (current != null)
-            {
-                result.Add(current.Data);
+            Node<T> tmp = null;
+            var current = Head;
+            
+            while (current != null) {
+                tmp = current.Prev;
+                current.Prev = current.Next;
+                current.Next = tmp;
                 current = current.Prev;
             }
-
-            foreach(var i in result)
-                Console.Write(i + " ");
-
-            return result;
+            
+            if (tmp != null) {
+                Head = tmp.Prev;
+            }
         }
 
         /// <summary>
@@ -318,7 +354,6 @@ namespace algLab_3.Lists
                 current = current.Next;
             }
 
-            Console.WriteLine(count);
             return count;
         }
 
@@ -406,12 +441,26 @@ namespace algLab_3.Lists
             return false;
         }
 
+        /// <summary> Проверить что указанные данные содержатся </summary>
+        /// <param name="data"> Данные </param>
+        public T GetContained(T data)
+        {
+            var current = Head;
+            while (current != null)
+            {
+                if (current.Data.Equals(data))
+                    return current.Data;
+                current = current.Next;
+            }
+            return default(T);
+        }
+
         /// <summary>
         /// Написать функцию, которая удаляет из списка L все элементы Е, если таковые имеются. 
         /// Часть 4. Задание 7.
         /// </summary>
         /// <returns> Новый список </returns>
-        public bool ContainsAllNumbers(T data)
+        public bool DeleteAllNumbers(T data)
         {
             var current = Head;
             while(current != null)
@@ -431,19 +480,18 @@ namespace algLab_3.Lists
         /// Часть 4. Задание 11.
         /// </summary>
         /// <returns> Новый список </returns>
-        public DuplexLinkedList<T> DoublingList(DuplexLinkedList<T> list)
+        public void DoublingList()
         {
-            var list2 = new DuplexLinkedList<T>();
-            foreach(var i in list)
-                list2.Add(i);
-            foreach (var item in list2)
+            var list = new DuplexLinkedList<T>(this);
+            AddDuplexLinkedList(list);
+        }
+
+        public void AddDuplexLinkedList(DuplexLinkedList<T> list)
+        {
+            foreach (var item in list)
             {
-                list.Add(item);
+                Add(item);
             }
-           
-            foreach(var i in list)
-                Console.Write(i + " ");
-            return list;
         }
 
         /// <summary>
@@ -488,7 +536,7 @@ namespace algLab_3.Lists
             }
             else
             {
-                SetHeadAndTail(new Node<T>(data));
+                //SetHeadAndTail(new Node<T>(data));
             }
         }
 

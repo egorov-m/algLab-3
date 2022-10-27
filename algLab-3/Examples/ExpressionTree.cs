@@ -1,4 +1,6 @@
-﻿namespace algLab_3.Examples
+﻿using System.Text;
+
+namespace algLab_3.Examples
 {
     public class Node
     {
@@ -46,19 +48,19 @@
             temp = stack.Pop();
             return temp;
         }
-        public static void Inorder(Node root)
+        public static StringBuilder Inorder(Node root, StringBuilder result)
         {
-            if (root == null) return;
-
-            Inorder(root.left);
-            Console.Write(root.data);
-            Inorder(root.right);
+            if (root == null) return result;
+            Inorder(root.left, result);
+            result.Append(root.data);
+            Inorder(root.right, result);
+            return result;
         }
 
         public static void ShowExpression(string postfix)
         {
             var r = GetExpressionTree(postfix);
-            Inorder(r);
+            //Inorder(r);
         }
     }
 }

@@ -1,34 +1,36 @@
-﻿namespace algLab_3.Examples
+﻿using System.Text;
+
+namespace algLab_3.Examples
 {
     public static class ReverseWords
     {
-        public static void ReversingWords(this string str)
+        public static string ReversingWords(this string str)
         {
             var stack = new Stack.Stack<char>();
+            var result = new StringBuilder();
 
-            for (var i = 0; i < str.Length; ++i)
+            foreach (var item in str)
             {
-                if (str[i] != ' ')
-                    stack.Push(str[i]);
+                if (item != ' ') stack.Push(item);
 
                 else
                 {
-                    while (stack.Count > 0)
-                        Console.Write(stack.Pop());
-                    
-                    Console.Write(" ");
+                    while (stack.Count > 0) result.Append(stack.Pop());
+                    //Console.Write(stack.Pop());
+                    result.Append(' ');
+                    //Console.Write(" ");
                 }
             }
 
-            while (stack.Count > 0)
-                Console.Write(stack.Pop());
-            
+            while (stack.Count > 0) result.Append(stack.Pop());
+                //Console.Write(stack.Pop());
+            return result.ToString();
         }
 
-        public static void ShowResult(string word)
-        {
-            ReversingWords(word);
-        }
+        //public static void ShowResult(string word)
+        //{
+        //    ReversingWords(word);
+        //}
     }
 }
 

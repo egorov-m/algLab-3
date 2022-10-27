@@ -21,7 +21,7 @@
             list.Head.PrintList();
 
             // Часть 3.
-            list.RemoveDuplicates<int>();
+            list.RemoveDuplicates();
             Console.WriteLine("");
             Console.WriteLine("Связный лист после удаления дубликатов: ");
             list.Head.PrintList();
