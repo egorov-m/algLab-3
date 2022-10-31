@@ -174,7 +174,7 @@ namespace algLab_3.ConsoleInput
                 GetListIntegerNumbersFromConsoleInput(list);
                 System.Console.Write(index ? "Введите индекс первого элемента: " : "Введите опорный элемент: ");
                 if (!int.TryParse(System.Console.ReadLine(), out var target)) throw new InvalidCastException("ОШИБКА: нужно ввести целочисленный опорный элемент.");
-                System.Console.Write(index ? "Введите индекс второго элемента: " :"Введите опорный элемент: ");
+                System.Console.Write(index ? "Введите индекс второго элемента: " :"Введите элемент: ");
                 if (!int.TryParse(System.Console.ReadLine(), out var element)) throw new InvalidCastException("ОШИБКА: нужно ввести целочисленный элемент.");
                 System.Console.Write("Входной список: ");
                 PrintList(list, 1);
