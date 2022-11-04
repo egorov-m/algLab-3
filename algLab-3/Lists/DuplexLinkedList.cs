@@ -238,7 +238,7 @@ namespace algLab_3.Lists
                         list.Add(current.Data);
                         item = current;
                         current = current.Next;
-                        Delete(item.Data);
+                        Delete(item);
                     }
                     return list;
                 }
